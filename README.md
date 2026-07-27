@@ -54,8 +54,20 @@ people's private data. PRs that add private information will be closed.
 
 - **Source data** compiled by [@0xvietnguyen](https://x.com/0xvietnguyen), current as of
   Jul 25, 2026.
+- **Cross-referenced** against [RootData's 2026 Crypto Dead Projects List](https://www.rootdata.com/archives/detail/2026%20Crypto%20Dead%20Projects%20List)
+  (current as of Jul 26, 2026). Every project added from it was individually researched
+  to confirm its shutdown date and locate a real announcement; unverifiable entries were
+  left out rather than listed on trust.
 - **Site** built and maintained by [@lain_calvo](https://x.com/lain_calvo).
 - Categories are best-effort labels, not official classifications.
+
+### How entries are sourced
+
+Most entries link to the project's own announcement (X post, blog, governance forum).
+Where no primary announcement could be found, the entry links to press coverage instead
+and is tagged **Press coverage**. A few announced a shutdown with no archivable link and
+are marked **Link not archived**. The `c` field records which: `x`, `docs`, `news`,
+`discord`, or `deleted`.
 
 ## Disclaimer
 

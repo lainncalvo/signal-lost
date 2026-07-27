@@ -458,6 +458,7 @@
               <option value="x">X announcement</option>
               <option value="discord">Discord</option>
               <option value="docs">Blog / forum / docs</option>
+              <option value="news">Press coverage</option>
               <option value="deleted">Account deleted</option>
             </select>
           </div>
@@ -494,7 +495,7 @@
         <p class="eyebrow">Data &amp; Contribute</p>
         <h1 class="title">Where this data <span class="dead-word">comes from</span></h1>
         <p class="lede">Every entry in the registry is public, on-the-record information — and the list is meant to keep growing with the community's help.</p>
-        <p class="stamp">Source data last updated · Jul 25, 2026</p>
+        <p class="stamp">Source data last updated · Jul 26, 2026</p>
       </div>
     </header>
 
@@ -509,8 +510,14 @@
             <p class="mono-note">Source dataset current as of Jul 25, 2026.</p>
           </div>
           <div class="card">
-            <h3>Additions &amp; maintenance</h3>
-            <p>On top of that base, <a href="https://x.com/lain_calvo" target="_blank" rel="noopener noreferrer">@lain_calvo</a> built this site and keeps the registry going: adding new shutdowns as they happen, categorizing every project, and linking each entry back to its original announcement.</p>
+            <h3>Cross-referenced sources</h3>
+            <p>The registry is expanded against <a href="https://www.rootdata.com/archives/detail/2026%20Crypto%20Dead%20Projects%20List" target="_blank" rel="noopener noreferrer">RootData's 2026 Crypto Dead Projects List</a>. Every project added from it was individually researched to confirm the shutdown date and locate a real announcement — entries that could not be verified were left out rather than listed on trust.</p>
+            <p class="mono-note">RootData list current as of Jul 26, 2026.</p>
+          </div>
+          <div class="card wide">
+            <h3>Additions, verification &amp; maintenance</h3>
+            <p>On top of those sources, <a href="https://x.com/lain_calvo" target="_blank" rel="noopener noreferrer">@lain_calvo</a> built this site and keeps the registry going: adding new shutdowns as they happen, categorizing every project, and linking each entry back to its original announcement.</p>
+            <p><b>How entries are sourced.</b> Most link to the project's own announcement — an X post, a blog post, a governance forum thread. Where no primary announcement could be found, the entry links to press coverage instead and is tagged <b>Press coverage</b>, so you always know what kind of source you are reading. A handful announced a shutdown with no archivable link; those are marked <b>Link not archived</b>.</p>
             <p class="mono-note">Categories are best-effort labels, not official classifications. Not financial advice.</p>
           </div>
         </div>
@@ -620,12 +627,58 @@
     {n:"Polynomial",           iso:"2026-02-13", day:true,  url:"https://x.com/polynomialfi/status/2022344918111494169",       c:"x",       cat:"DeFi"},
     {n:"NGS",                  iso:"2026-01-28", day:true,  url:"https://x.com/niftygateway/status/2016254238347891112",       c:"x",       cat:"NFT/Social"},
     {n:"Entropy",              iso:"2026-01-24", day:true,  url:null,                                                          c:"deleted", cat:"Other"},
-    {n:"Slingshot",            iso:"2026-01-21", day:true,  url:"https://x.com/slingshotcrypto/status/2015912783112499513",    c:"x",       cat:"DeFi"}
+    {n:"Slingshot",            iso:"2026-01-21", day:true,  url:"https://x.com/slingshotcrypto/status/2015912783112499513",    c:"x",       cat:"DeFi"},
+    {n:"BitMart",                iso:"2026-07-26", day:true,  url:"https://x.com/BitMartExchange/status/2081197305491845201", c:"x", cat:"Trading/CEX"},
+    {n:"Forma",                  iso:"2026-07-25", day:true,  url:"https://x.com/Formachain/status/2081046187570798955", c:"x", cat:"L2/Infra"},
+    {n:"Poolin",                 iso:"2026-07-22", day:true,  url:"https://www.coindesk.com/markets/2026/07/24/poolin-was-bitcoin-s-biggest-mining-pool-and-now-it-s-filing-for-bankruptcy", c:"news", cat:"Other"},
+    {n:"Hazeflow",               iso:"2026-07-21", day:true,  url:null, c:"x", cat:"Other"},
+    {n:"DeltaDeFi",              iso:"2026-07-15", day:true,  url:"https://x.com/DeltaDeFi/status/2077323188963561716", c:"x", cat:"DeFi"},
+    {n:"Levvy",                  iso:"2026-07-15", day:false, url:"https://forum.cardano.org/t/important-notice-levvy-fi-platform-retirement-please-act-now-to-secure-your-assets/155575", c:"news", cat:"DeFi"},
+    {n:"Offramp.xyz",            iso:"2026-07-15", day:false, url:"https://www.offramp.xyz/blog/were-shutting-down-offramp/", c:"docs", cat:"Other"},
+    {n:"Summer.fi",              iso:"2026-07-15", day:true,  url:"https://blog.summer.fi/sunsetting-summer-fi-and-the-labs-company/", c:"docs", cat:"DeFi"},
+    {n:"Valhalla",               iso:"2026-07-15", day:false, url:"https://www.theblock.co/post/408718/megaeth-sunsets-mega-mafia-accelerator-program-noting-most-successful-apps-left", c:"news", cat:"DeFi"},
+    {n:"EXMO.com",               iso:"2026-07-14", day:true,  url:"https://exmo.com/blog/en/notifications/exmo-com-is-closing-please-initiate-withdrawal-from-your-account/", c:"docs", cat:"Trading/CEX"},
+    {n:"HaHa",                   iso:"2026-07-07", day:true,  url:"https://nulltx.com/haha-wallet-confirms-shutdown-why-5-crypto-wallets-are-folding-in-2026", c:"news", cat:"Wallet"},
+    {n:"Ethereum Follow Protocol",iso:"2026-07-04", day:true,  url:"https://www.cryptopolitan.com/brantly-millegan-leaves-ens-and-winds-down-ethid-org-amid-governance-upheaval/", c:"news", cat:"NFT/Social"},
+    {n:"Exchange Art",           iso:"2026-07-02", day:true,  url:"https://x.com/exchgart/status/2072744267789828222", c:"x", cat:"NFT/Social"},
+    {n:"Oxium",                  iso:"2026-06-25", day:true,  url:"https://x.com/oxiumxyz/status/2070162907145330799", c:"x", cat:"DeFi"},
+    {n:"Strobe Finance",         iso:"2026-06-23", day:true,  url:"https://x.com/StrobeFinance/status/2069501265227428308", c:"x", cat:"DeFi"},
+    {n:"Altura",                 iso:"2026-06-21", day:true,  url:"https://www.theblock.co/post/405477/altura-winds-down-stablecoin-vault", c:"news", cat:"DeFi"},
+    {n:"Felix",                  iso:"2026-06-19", day:true,  url:"https://www.kucoin.com/news/flash/felix-first-hip-3-platform-on-hyperliquid-announces-shutdown", c:"news", cat:"DeFi"},
+    {n:"OpenRank",               iso:"2026-06-16", day:true,  url:"https://x.com/SahilDewan/status/2066587393529098534", c:"x", cat:"L2/Infra"},
+    {n:"Pyra",                   iso:"2026-06-15", day:true,  url:"https://crypto.news/pyra-to-shut-down-after-drift-exploit-derails-recovery-efforts/", c:"news", cat:"Wallet"},
+    {n:"Goldfinch",              iso:"2026-06-12", day:true,  url:"https://gov.goldfinch.finance/t/gip-87-maintenance-mode-of-goldfinch-operations-and-wind-down-goldfinch-prime/2202", c:"docs", cat:"DeFi"},
+    {n:"NFTfi",                  iso:"2026-06-11", day:true,  url:"https://x.com/WuBlockchain/status/2065117212596383908", c:"x", cat:"NFT/Social"},
+    {n:"0xPPL",                  iso:"2026-06-02", day:true,  url:"https://thecoinformer.com/news/balaji-backed-0xppl-shuts-down-after-failing-to-build-crypto-super-app", c:"news", cat:"NFT/Social"},
+    {n:"Pingu Exchange",         iso:"2026-06-01", day:true,  url:"https://x.com/pinguexchange/status/2061487370004766813", c:"x", cat:"Trading/CEX"},
+    {n:"Rova",                   iso:"2026-06-01", day:true,  url:"https://x.com/spenserhuang/status/2061588924875813321", c:"x", cat:"Other"},
+    {n:"ICON",                   iso:"2026-05-25", day:true,  url:"https://www.icon.foundation/blog/2026/final-date-set-for-sodax-migration-icon-network-to-shut-down-end-of-2026", c:"docs", cat:"L2/Infra"},
+    {n:"Ranger",                 iso:"2026-05-14", day:true,  url:"https://x.com/barrett_io/status/2055015245538832540", c:"x", cat:"DeFi"},
+    {n:"Stream Finance",         iso:"2026-05-11", day:true,  url:"https://x.com/StreamDefi/status/2053826155505992169", c:"x", cat:"DeFi"},
+    {n:"DL News",                iso:"2026-05-07", day:true,  url:"https://www.dlnews.com/articles/people-culture/dl-news-is-closing/", c:"docs", cat:"Other"},
+    {n:"Over Protocol",          iso:"2026-04-28", day:true,  url:"https://crypto.news/over-protocols-lights-go-out-leaving-a-decentralized-shell-behind/", c:"news", cat:"L2/Infra"},
+    {n:"Micro3",                 iso:"2026-04-22", day:true,  url:"https://x.com/Micro3io/status/2046946446889398547", c:"x", cat:"NFT/Social"},
+    {n:"HYTOPIA",                iso:"2026-04-15", day:false, url:"https://x.com/hytopia/status/2045244546536366503", c:"x", cat:"Gaming"},
+    {n:"MUD / Lattice",          iso:"2026-04-15", day:true,  url:"https://x.com/latticexyz/status/2044103611072835744", c:"x", cat:"Gaming"},
+    {n:"UX Chain",               iso:"2026-04-01", day:true,  url:"https://x.com/wublockchain12/status/2039182998374113317", c:"x", cat:"L2/Infra"},
+    {n:"Coinflare",              iso:"2026-03-26", day:true,  url:null, c:"x", cat:"Trading/CEX"},
+    {n:"CharmVerse",             iso:"2026-03-25", day:true,  url:"https://x.com/CharmVerse/status/2036766170158674264", c:"x", cat:"Other"},
+    {n:"Colony",                 iso:"2026-02-26", day:true,  url:"https://x.com/Colonylab/status/2027057233629237499", c:"x", cat:"Other"},
+    {n:"WebN Group",             iso:"2026-02-25", day:true,  url:"https://www.coindesk.com/business/2026/02/25/billionaire-alan-howard-s-crypto-incubator-webn-closes-down", c:"news", cat:"Other"},
+    {n:"Catalog",                iso:"2026-02-17", day:true,  url:"https://fin.catalog.works", c:"docs", cat:"NFT/Social"},
+    {n:"ZeroLend",               iso:"2026-02-16", day:true,  url:"https://x.com/zerolendxyz/status/2023402141545791866", c:"x", cat:"DeFi"},
+    {n:"Enclave Markets",        iso:"2026-02-12", day:false, url:"https://www.enclave.market/operations-paused", c:"docs", cat:"Trading/CEX"},
+    {n:"Family",                 iso:"2026-02-03", day:true,  url:"https://avara.xyz/blog/the-future-of-family-wallet", c:"docs", cat:"Wallet"},
+    {n:"GOAT Gaming",            iso:"2026-02-02", day:true,  url:"https://playgoatgaming.substack.com/p/a-farewell-to-goat-gaming", c:"docs", cat:"Gaming"},
+    {n:"StableLab",              iso:"2026-01-29", day:true,  url:"https://x.com/StableLab/status/2016880117587308847", c:"x", cat:"Other"},
+    {n:"Rodeo",                  iso:"2026-01-27", day:true,  url:"https://x.com/saturnial/status/2016212705036939476", c:"x", cat:"NFT/Social"},
+    {n:"The Forgotten Runiverse",iso:"2026-01-27", day:true,  url:"https://x.com/RuniverseGame/status/2015967471161745673", c:"x", cat:"Gaming"},
+    {n:"Bloktopia",              iso:"2026-01-05", day:true,  url:"https://medium.com/@bloktopia/a-final-chapter-for-bloktopia-fd6789e42439", c:"docs", cat:"Gaming"}
   ];
 
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var CLOSURE_LABEL = { x:"X announcement", discord:"Discord", docs:"Blog / forum / docs", deleted:"Account deleted" };
-  var CLOSURE_ORDER = ["x","deleted","discord","docs"];
+  var CLOSURE_LABEL = { x:"X announcement", discord:"Discord", docs:"Blog / forum / docs", news:"Press coverage", deleted:"Account deleted" };
+  var CLOSURE_ORDER = ["x","docs","news","deleted","discord"];
 
   // active months in the data (Jan..Jul)
   var monthIdx = function (d) { return parseInt(d.iso.slice(5,7),10) - 1; };
@@ -722,10 +775,14 @@
 
   function rowHTML(d, i) {
     var link = d.url
-      ? '<a class="btn-link" href="' + esc(d.url) + '" target="_blank" rel="noopener noreferrer">View announcement <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>'
+      ? '<a class="btn-link" href="' + esc(d.url) + '" target="_blank" rel="noopener noreferrer">' +
+          (d.c === "news" ? "View coverage" : "View announcement") +
+          ' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>'
       : (d.c === "discord"
           ? '<span class="badge-dead badge-soft">Discord only</span>'
-          : '<span class="badge-dead">Account deleted</span>');
+          : d.c === "deleted"
+            ? '<span class="badge-dead">Account deleted</span>'
+            : '<span class="badge-dead badge-soft">Link not archived</span>');
     var idx = ("00" + (i + 1)).slice(-3);
     return '<div class="row" role="row" style="animation-delay:' + Math.min(i*22,500) + 'ms">' +
       '<div class="c-idx">' + idx + '</div>' +
