@@ -130,6 +130,38 @@
   .topcount { font-family: var(--font-mono); font-size: 12px; color: var(--dim); letter-spacing: 0.04em; }
   .topcount b { color: var(--accent-ink); }
 
+  /* topbar tabs */
+  .tabs { display: flex; gap: 6px; }
+  .tab { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; padding: 7px 13px;
+    color: var(--dim); border: 1px solid transparent; text-transform: uppercase; }
+  .tab:hover { color: var(--text); border-color: var(--border-2); text-decoration: none; }
+  .tab[aria-current="page"] { color: var(--accent-ink); border-color: var(--border-2); background: var(--panel); }
+
+  @media (max-width: 700px) {
+    .brand span, .topcount { display: none; }
+  }
+
+  /* ---------- Data & Contribute page ---------- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 26px; }
+  .about-grid .card.wide { grid-column: 1 / -1; }
+  .card p { font-size: 14px; color: var(--dim); margin: 0 0 12px; max-width: 68ch; }
+  .card p:last-child { margin-bottom: 0; }
+  .card p b { color: var(--text); }
+  .card .mono-note { font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
+  .stamp { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 13px;
+    color: var(--accent-ink); border: 1px dashed color-mix(in srgb, var(--accent) 55%, var(--border));
+    padding: 8px 14px; margin-top: 4px; letter-spacing: 0.04em; }
+  .stamp::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .step { display: grid; grid-template-columns: 30px 1fr; gap: 12px; margin-bottom: 16px; }
+  .step:last-child { margin-bottom: 0; }
+  .step .no { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--accent-ink);
+    border: 1px solid var(--border-2); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .step h4 { font-family: var(--font-mono); font-size: 13px; margin: 4px 0 6px; letter-spacing: 0.02em; }
+  .step p { font-size: 13.5px; }
+  .code-inline { font-family: var(--font-mono); font-size: 12px; background: var(--panel-2);
+    border: 1px solid var(--border); padding: 2px 6px; color: var(--accent-ink); white-space: nowrap; }
+  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+
   /* ---------- Hero ---------- */
   .hero { padding: clamp(46px, 8vw, 92px) 0 clamp(30px, 5vw, 52px); position: relative; }
   .eyebrow {
@@ -350,10 +382,15 @@
         <b>Signal Lost</b>
         <span>// shutdown registry</span>
       </div>
+      <nav class="tabs" aria-label="Site sections">
+        <a class="tab" href="#/" data-view="home" aria-current="page">Registry</a>
+        <a class="tab" href="#/data" data-view="data">Data &amp; Contribute</a>
+      </nav>
       <div class="topcount"><b id="tc-num">63</b> projects flatlined · 2026</div>
     </div>
   </div>
 
+  <div id="view-home">
   <header class="hero">
     <div class="shell">
       <p class="eyebrow">Crypto Shutdown Registry — 2026 to present</p>
@@ -449,6 +486,57 @@
       </div>
     </section>
   </main>
+  </div><!-- /view-home -->
+
+  <div id="view-data" hidden>
+    <header class="hero">
+      <div class="shell">
+        <p class="eyebrow">Data &amp; Contribute</p>
+        <h1 class="title">Where this data <span class="dead-word">comes from</span></h1>
+        <p class="lede">Every entry in the registry is public, on-the-record information — and the list is meant to keep growing with the community's help.</p>
+        <p class="stamp">Source data last updated · Jul 25, 2026</p>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section aria-labelledby="src">
+        <p class="seclabel">// <b>sources</b></p>
+        <h2 class="sectitle" id="src">The data, credited</h2>
+        <div class="about-grid">
+          <div class="card">
+            <h3>Original research</h3>
+            <p>The base dataset comes from public research by <a href="https://x.com/0xvietnguyen" target="_blank" rel="noopener noreferrer">@0xvietnguyen</a> on X, who tracked and compiled crypto project shutdowns through 2026 — project names, shutdown dates, and a link to each announcement.</p>
+            <p class="mono-note">Source dataset current as of Jul 25, 2026.</p>
+          </div>
+          <div class="card">
+            <h3>Additions &amp; maintenance</h3>
+            <p>On top of that base, <a href="https://x.com/lain_calvo" target="_blank" rel="noopener noreferrer">@lain_calvo</a> built this site and keeps the registry going: adding new shutdowns as they happen, categorizing every project, and linking each entry back to its original announcement.</p>
+            <p class="mono-note">Categories are best-effort labels, not official classifications. Not financial advice.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="cb">
+        <p class="seclabel">// <b>collaborate</b></p>
+        <h2 class="sectitle" id="cb">Help the registry grow</h2>
+        <div class="about-grid">
+          <div class="card">
+            <h3>Report a shutdown — DM</h3>
+            <p>Know a project that shut down and isn't listed, or spotted an error? The quickest way: send a DM to <a href="https://x.com/lain_calvo" target="_blank" rel="noopener noreferrer">@lain_calvo</a> on X with:</p>
+            <div class="step"><span class="no">1</span><div><h4>Project name</h4></div></div>
+            <div class="step"><span class="no">2</span><div><h4>Shutdown date</h4></div></div>
+            <div class="step"><span class="no">3</span><div><h4>Link to the announcement</h4></div></div>
+          </div>
+          <div class="card">
+            <h3>Contribute on GitHub</h3>
+            <p>The whole project is open source. Open an issue with the details, or send a pull request editing the <span class="code-inline">DATA</span> array in <span class="code-inline">index.html</span> — every stat, chart and filter on the site recomputes automatically from that data.</p>
+            <p><a class="btn-link" href="https://github.com/lainncalvo/signal-lost" target="_blank" rel="noopener noreferrer">github.com/lainncalvo/signal-lost <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a></p>
+            <p class="mono-note">Please keep contributions to public, verifiable information — a project's own announcement, a dated post, an official statement. No private or personal data.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div><!-- /view-data -->
 
   <footer>
     <div class="shell">
@@ -712,6 +800,20 @@
   });
 
   apply();
+
+  // ---------- Tabs / hash routing ----------
+  function setView(v) {
+    document.getElementById("view-home").hidden = (v !== "home");
+    document.getElementById("view-data").hidden = (v !== "data");
+    Array.prototype.forEach.call(document.querySelectorAll(".tab"), function (t) {
+      if (t.dataset.view === v) t.setAttribute("aria-current", "page");
+      else t.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+  }
+  function route() { setView(location.hash === "#/data" ? "data" : "home"); }
+  window.addEventListener("hashchange", route);
+  route();
 })();
 </script>
 
