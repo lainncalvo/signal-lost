@@ -56,7 +56,7 @@ to be computed from `DATA` at runtime.
 
 ## Reason taxonomy
 
-Nine reason tags plus an explicit `unknown`, derived from the observed data rather than
+Eight reason tags plus an explicit `unknown`, derived from the observed data rather than
 invented up front:
 
 | Tag | Label | Meaning | Observed example |
@@ -67,9 +67,8 @@ invented up front:
 | `market` | Market contraction | Sector-wide decline, not project-specific failure | NFTfi, Exchange Art, DL News |
 | `regulatory` | Regulatory / sanctions | Forced or constrained by authorities | EXMO.com |
 | `insolvency` | Insolvency / bankruptcy | Formal insolvency proceedings | Poolin |
-| `acquired` | Acquired / absorbed | Folded into another entity or brand | Family (Aave Labs), WebN Group |
 | `dependency` | Dependency shut down | Died because something upstream died | Felix (USDH), Valhalla (MegaETH) |
-| `voluntary` | Wound down by choice | Deliberate, orderly close; often returning capital | OpenRank, StableLab, Colony |
+| `voluntary` | Wound down by choice | Deliberate close: returning capital, consolidating into a parent product, or the team moving on | OpenRank, StableLab, Slingshot |
 | `unknown` | Not reported | No reason found in any source | — |
 
 `traction` and `market` are deliberately separate: the first is the project failing, the

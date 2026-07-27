@@ -37,7 +37,7 @@ the `<script>` tag — look for `var DATA = [`. Each project is one object:
   c:"x",              // how it was announced: x | docs | news | discord | deleted
   cat:"DeFi",         // Wallet | DeFi | L2/Infra | Gaming | NFT/Social | Trading/CEX | AI | Other
   why:"funding",      // funding | exploit | traction | market | regulatory
-                      // insolvency | acquired | dependency | voluntary | unknown
+                      // insolvency | dependency | voluntary | unknown
   note:"Ran out of runway after failing to close a follow-on round.",
   figs:[{k:"Raised",v:"$5M"}] }        // 0-3 key figures, optional
 ```

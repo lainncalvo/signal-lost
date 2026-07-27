@@ -333,13 +333,11 @@
   .why-chip { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px;
     border: 1px solid currentColor; white-space: nowrap; display: inline-block; letter-spacing: 0.02em; }
   .why-funding{color:#a8681a} .why-exploit{color:#b23530} .why-traction{color:#5f6874}
-  .why-market{color:#3f6f9e} .why-regulatory{color:#7d43a0} .why-insolvency{color:#a32f45}
-  .why-acquired{color:#1f7c70} .why-dependency{color:#8a6f10} .why-voluntary{color:#55703f}
+  .why-market{color:#3f6f9e} .why-regulatory{color:#7d43a0} .why-insolvency{color:#a32f45} .why-dependency{color:#8a6f10} .why-voluntary{color:#55703f}
   .why-unknown{color:var(--faint);border-style:dashed}
   @media (prefers-color-scheme: dark) {
     .why-funding{color:#d98c2b} .why-exploit{color:#e0655f} .why-traction{color:#98a1ae}
-    .why-market{color:#6f9bd1} .why-regulatory{color:#b06fd1} .why-insolvency{color:#d1566f}
-    .why-acquired{color:#4fae9b} .why-dependency{color:#c9a227} .why-voluntary{color:#8fae74}
+    .why-market{color:#6f9bd1} .why-regulatory{color:#b06fd1} .why-insolvency{color:#d1566f} .why-dependency{color:#c9a227} .why-voluntary{color:#8fae74}
   }
   :root[data-theme="dark"] .why-funding{color:#d98c2b}
   :root[data-theme="dark"] .why-exploit{color:#e0655f}
@@ -347,7 +345,6 @@
   :root[data-theme="dark"] .why-market{color:#6f9bd1}
   :root[data-theme="dark"] .why-regulatory{color:#b06fd1}
   :root[data-theme="dark"] .why-insolvency{color:#d1566f}
-  :root[data-theme="dark"] .why-acquired{color:#4fae9b}
   :root[data-theme="dark"] .why-dependency{color:#c9a227}
   :root[data-theme="dark"] .why-voluntary{color:#8fae74}
   :root[data-theme="light"] .why-funding{color:#a8681a}
@@ -356,7 +353,6 @@
   :root[data-theme="light"] .why-market{color:#3f6f9e}
   :root[data-theme="light"] .why-regulatory{color:#7d43a0}
   :root[data-theme="light"] .why-insolvency{color:#a32f45}
-  :root[data-theme="light"] .why-acquired{color:#1f7c70}
   :root[data-theme="light"] .why-dependency{color:#8a6f10}
   :root[data-theme="light"] .why-voluntary{color:#55703f}
 
@@ -652,7 +648,7 @@
     {n:"Swell",                iso:"2026-06-17", day:true,  url:"https://x.com/swellnetworkio/status/2067031459731570952",     c:"x",       cat:"DeFi", why:"voluntary", note:"Sunset its Swellchain L2 to concentrate on Faro; restaking matured slower than expected."},
     {n:"Powerloom",            iso:"2026-06-16", day:true,  url:"https://x.com/powerloomorg/status/2066566700842221818",       c:"x",       cat:"L2/Infra", why:"funding", note:"Founders self-funded operations unpaid for 8+ months and said resources and energy were exhausted."},
     {n:"Satori",               iso:"2026-06-16", day:true,  url:"https://x.com/satorifinance/status/2066909927973740797",      c:"x",       cat:"DeFi", why:"market", note:"Said prolonged unfavorable market conditions left revenue too low to sustain operations.", figs:[{"k":"Perp volume","v":"$134B"},{"k":"Raised","v":"$10M"},{"k":"TVL at close","v":"$1.2M"}]},
-    {n:"Ventuals",             iso:"2026-06-15", day:true,  url:"https://x.com/ventuals/status/2066517389169025294",           c:"x",       cat:"DeFi", why:"acquired", note:"Not shut for losses: the whole team folded into an undisclosed Hyperliquid-ecosystem project.", figs:[{"k":"Volume","v":"$650M"},{"k":"Traders","v":"11,000"}]},
+    {n:"Ventuals",             iso:"2026-06-15", day:true,  url:"https://x.com/ventuals/status/2066517389169025294",           c:"x",       cat:"DeFi", why:"voluntary", note:"Not shut for losses: the whole team folded into an undisclosed Hyperliquid-ecosystem project.", figs:[{"k":"Volume","v":"$650M"},{"k":"Traders","v":"11,000"}]},
     {n:"Fishing Frenzy",       iso:"2026-06-15", day:true,  url:"https://x.com/fishingfrenzyco/status/2066376668357566509",    c:"x",       cat:"Gaming", why:"traction", note:"Studio Uncharted closed it, saying it could not find product-market-business fit in crypto gaming.", figs:[{"k":"Paid to community","v":"$62,845"}]},
     {n:"Pudgy Party",          iso:"2026-06-13", day:true,  url:"https://x.com/playpudgyparty/status/2065555998031384917",     c:"x",       cat:"Gaming", why:"traction", note:"Wound down to refocus on Pudgy World; the CEO said only 200-300 players were still active.", figs:[{"k":"Downloads","v":"1M+"},{"k":"Active players","v":"200-300"}]},
     {n:"Botanix",              iso:"2026-06-10", day:true,  url:"https://x.com/botanix/status/2064420116578590941",            c:"x",       cat:"L2/Infra", why:"traction", note:"It did not work: users never wanted Bitcoin-native DeFi, so the tokenless L2 wound down.", figs:[{"k":"TVL at close","v":"$119,500"},{"k":"Raised","v":"$14.4M"}]},
@@ -674,7 +670,7 @@
     {n:"77-Bit",               iso:"2026-04-16", day:true,  url:"https://x.com/the77bit/status/2044522987886440940",           c:"x",       cat:"Gaming", why:"funding", note:"Web3 MMORPG paused indefinitely, out of money, with infrastructure it could not afford to rebuild.", figs:[{"k":"Raised","v":"~$1.75M"}]},
     {n:"Opulous",              iso:"2026-04-15", day:true,  url:"https://x.com/opulousapp/status/2044409892237107327",         c:"x",       cat:"NFT/Social", why:"exploit", note:"A Messina bridge exploit released hundreds of millions of OPUL, collapsing price and market-making reserves."},
     {n:"Foundation",           iso:"2026-04-15", day:true,  url:null,                                                          c:"deleted", cat:"NFT/Social", why:"market", note:"A rescue sale to BlackDove collapsed and no other buyer was worth pursuing, so it closed for good.", figs:[{"k":"Primary sales","v":"$230M+"}]},
-    {n:"Megaphone",            iso:"2026-04-12", day:true,  url:"https://x.com/megaphone_hq/status/2043224242054217793",       c:"x",       cat:"NFT/Social", why:"acquired", note:"Platform deactivated and data handed to partners as founders joined insurtech Fulcrum.", figs:[{"k":"Users","v":"5M+"}]},
+    {n:"Megaphone",            iso:"2026-04-12", day:true,  url:"https://x.com/megaphone_hq/status/2043224242054217793",       c:"x",       cat:"NFT/Social", why:"voluntary", note:"Platform deactivated and data handed to partners as founders joined insurtech Fulcrum.", figs:[{"k":"Users","v":"5M+"}]},
     {n:"Seamless Protocol",    iso:"2026-04-08", day:true,  url:"https://x.com/seamlessfi/status/2041572728239747558",         c:"x",       cat:"DeFi", why:"traction", note:"Leverage Tokens never found true product-market fit and the team saw no path to it in the current design."},
     {n:"Intergaze",            iso:"2026-04-03", day:true,  url:"https://x.com/intergaze_xyz/status/2039881751170818227",      c:"x",       cat:"NFT/Social", why:"traction", note:"Rollup infrastructure cost was no longer justified by current usage; NFTs migrated to Stargaze."},
     {n:"Dmail",                iso:"2026-04-02", day:true,  url:"https://x.com/dmailofficial/status/2039749505902694636",      c:"x",       cat:"NFT/Social", why:"traction", note:"Web3 email never commercialized; decentralized infra costs ballooned and core team members left.", figs:[{"k":"Token drop","v":"-57%"}]},
@@ -696,7 +692,7 @@
     {n:"Polynomial",           iso:"2026-02-13", day:true,  url:"https://x.com/polynomialfi/status/2022344918111494169",       c:"x",       cat:"DeFi", why:"traction", note:"TVL drained from its $8M peak as traders chose deeper venues; shut down instead of launching a token.", figs:[{"k":"Peak TVL","v":"$8M"},{"k":"Volume","v":"$4B+"}]},
     {n:"NGS",                  iso:"2026-01-28", day:true,  url:"https://x.com/niftygateway/status/2016254238347891112",       c:"x",       cat:"NFT/Social", why:"market", note:"Gemini closed Nifty Gateway as NFT volumes collapsed, refocusing on a single crypto super app.", figs:[{"k":"Peak sales","v":"$300M+"}]},
     {n:"Entropy",              iso:"2026-01-24", day:true,  url:null,                                                          c:"deleted", cat:"Other", why:"voluntary", note:"Founder concluded the custody business was not venture-scale after several pivots and returned capital.", figs:[{"k":"Raised","v":"$27M"},{"k":"a16z seed","v":"$25M"}]},
-    {n:"Slingshot",            iso:"2026-01-21", day:true,  url:"https://x.com/slingshotcrypto/status/2015912783112499513",    c:"x",       cat:"DeFi", why:"acquired", note:"Standalone app sunset after Magic Eden's acquisition; the tech moved into ME Wallet.", figs:[{"k":"Users","v":"~1M"}]},
+    {n:"Slingshot",            iso:"2026-01-21", day:true,  url:"https://x.com/slingshotcrypto/status/2015912783112499513",    c:"x",       cat:"DeFi", why:"voluntary", note:"Standalone app sunset after Magic Eden's acquisition; the tech moved into ME Wallet.", figs:[{"k":"Users","v":"~1M"}]},
     {n:"BitMart",                iso:"2026-07-26", day:true,  url:"https://x.com/BitMartExchange/status/2081197305491845201", c:"x", cat:"Trading/CEX", why:"voluntary", note:"Cited operating conditions, market environment and future strategic direction, with no further detail.", figs:[{"k":"BMX drop","v":"-58% in a day"}]},
     {n:"Forma",                  iso:"2026-07-25", day:true,  url:"https://x.com/Formachain/status/2081046187570798955", c:"x", cat:"L2/Infra", why:"dependency", note:"Chain became unsustainable after the upstream Astria stack shut down; NFTs migrate to Ethereum mainnet."},
     {n:"Poolin",                 iso:"2026-07-22", day:true,  url:"https://www.coindesk.com/markets/2026/07/24/poolin-was-bitcoin-s-biggest-mining-pool-and-now-it-s-filing-for-bankruptcy", c:"news", cat:"Other", why:"insolvency", note:"Filed Chapter 11 after years of frozen withdrawals and a stalled Texas mining expansion.", figs:[{"k":"Debts","v":"~$173M"},{"k":"IOUs issued","v":"$163.7M to 11,700 users"}]},
@@ -751,17 +747,17 @@
   var WHY_LABEL = {
     funding:"Ran out of funding", exploit:"Exploit / hack", traction:"No traction",
     market:"Market contraction", regulatory:"Regulatory / sanctions",
-    insolvency:"Insolvency / bankruptcy", acquired:"Acquired / absorbed",
+    insolvency:"Insolvency / bankruptcy",
     dependency:"Dependency shut down", voluntary:"Wound down by choice", unknown:"Not reported"
   };
   var WHY_SHORT = {
     funding:"Funding", exploit:"Exploit", traction:"No traction", market:"Market",
-    regulatory:"Regulatory", insolvency:"Insolvency", acquired:"Acquired",
+    regulatory:"Regulatory", insolvency:"Insolvency",
     dependency:"Dependency", voluntary:"By choice", unknown:"Not reported"
   };
-  var WHY_ORDER = ["traction","voluntary","funding","market","exploit","insolvency","dependency","acquired","regulatory","unknown"];
+  var WHY_ORDER = ["traction","voluntary","funding","market","exploit","insolvency","dependency","regulatory","unknown"];
   var WHY_HEX = { funding:"#d98c2b", exploit:"#d1566f", traction:"#8c93a1", market:"#6f9bd1",
-    regulatory:"#b06fd1", insolvency:"#c0455c", acquired:"#4fae9b", dependency:"#c9a227",
+    regulatory:"#b06fd1", insolvency:"#c0455c", dependency:"#c9a227",
     voluntary:"#7f9c6d", unknown:"#5c6672" };
 
   // active months in the data (Jan..Jul)
