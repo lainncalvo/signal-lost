@@ -50,13 +50,6 @@ details** about the maintainer, contributors, or anyone else (emails, phone numb
 real names, addresses, etc.). This project is about public ecosystem history, not
 people's private data. PRs that add private information will be closed.
 
-## Run it locally
-
-It's a self-contained static file with no build step and no dependencies. Either:
-
-- Double-click `index.html` to open it in your browser, or
-- Serve the folder: `python3 -m http.server 8000` → open `http://localhost:8000/`.
-
 ## Credits & data
 
 - **Source data** compiled by [@0xvietnguyen](https://x.com/0xvietnguyen), current as of
