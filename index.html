@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Lost — Crypto Shutdown Registry 2026</title>
+<meta name="description" content="A running record of crypto projects, protocols and chains that shut down in 2026 — with dates, links to each announcement, and stats. Source data by @0xvietnguyen (to Jul 25, 2026).">
+<meta property="og:title" content="Signal Lost — Crypto Shutdown Registry 2026">
+<meta property="og:description" content="Every crypto project that went dark in 2026, in one browsable registry.">
+<meta property="og:type" content="website">
+<style>html,body{margin:0;padding:0;background:#0a0c10}@media (prefers-color-scheme: light){html,body{background:#e7eaee}}</style>
+</head>
+<body>
+<style>
+  /* ============================================================
+     SIGNAL LOST — Crypto Shutdown Registry 2026
+     A cold monitoring-console aesthetic. Monospace identity,
+     amber "signal" accent, red reserved for "went dark".
+     ============================================================ */
+
+  :root {
+    color-scheme: light dark;
+
+    --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Menlo, Consolas, "Liberation Mono", monospace;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* Light theme (cool registry paper — deliberately NOT warm cream) */
+    --bg:        #e7eaee;
+    --bg-grain:  #dfe3e8;
+    --panel:     #f6f8fa;
+    --panel-2:   #eef1f4;
+    --border:    #ccd3da;
+    --border-2:  #b7c0c9;
+    --text:      #191d23;
+    --dim:       #545e69;
+    --faint:     #838d98;
+    --accent:    #9a6b12;   /* amber signal (darkened for light bg) */
+    --accent-ink:#7a5307;
+    --link:      #1f7c70;   /* teal interactive */
+    --dead:      #b23530;   /* red — went dark */
+    --grid-line: rgba(25,29,35,0.06);
+    --shadow:    0 1px 2px rgba(20,28,38,0.06), 0 8px 24px rgba(20,28,38,0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:        #0a0c10;
+      --bg-grain:  #0d1015;
+      --panel:     #12161c;
+      --panel-2:   #171c23;
+      --border:    #242b34;
+      --border-2:  #313a45;
+      --text:      #e7eaee;
+      --dim:       #99a2ad;
+      --faint:     #616b76;
+      --accent:    #e0ac4b;
+      --accent-ink:#f0c778;
+      --link:      #5cc0b0;
+      --dead:      #e0655f;
+      --grid-line: rgba(231,234,238,0.055);
+      --shadow:    0 1px 2px rgba(0,0,0,0.4), 0 10px 30px rgba(0,0,0,0.35);
+    }
+  }
+
+  /* Explicit theme toggles from the Artifact viewer must win both ways */
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg:#e7eaee; --bg-grain:#dfe3e8; --panel:#f6f8fa; --panel-2:#eef1f4;
+    --border:#ccd3da; --border-2:#b7c0c9; --text:#191d23; --dim:#545e69; --faint:#838d98;
+    --accent:#9a6b12; --accent-ink:#7a5307; --link:#1f7c70; --dead:#b23530;
+    --grid-line:rgba(25,29,35,0.06); --shadow:0 1px 2px rgba(20,28,38,0.06),0 8px 24px rgba(20,28,38,0.06);
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg:#0a0c10; --bg-grain:#0d1015; --panel:#12161c; --panel-2:#171c23;
+    --border:#242b34; --border-2:#313a45; --text:#e7eaee; --dim:#99a2ad; --faint:#616b76;
+    --accent:#e0ac4b; --accent-ink:#f0c778; --link:#5cc0b0; --dead:#e0655f;
+    --grid-line:rgba(231,234,238,0.055); --shadow:0 1px 2px rgba(0,0,0,0.4),0 10px 30px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  .sr-only {
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  .wrap {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background:
+      linear-gradient(180deg, var(--bg), var(--bg-grain));
+    min-height: 100%;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "tnum" 1;
+  }
+
+  .shell { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 40;
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar .shell {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; height: 58px;
+  }
+  .brand { display: flex; align-items: center; gap: 11px; font-family: var(--font-mono); }
+  .brand .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--dead);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--dead) 70%, transparent);
+    animation: pulse 2.6s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--dead) 55%, transparent); }
+    70%{ box-shadow: 0 0 0 9px transparent; }
+    100%{ box-shadow: 0 0 0 0 transparent; }
+  }
+  .brand b { font-weight: 700; letter-spacing: 0.06em; font-size: 13px; text-transform: uppercase; }
+  .brand span { color: var(--faint); font-size: 12px; }
+  .topcount { font-family: var(--font-mono); font-size: 12px; color: var(--dim); letter-spacing: 0.04em; }
+  .topcount b { color: var(--accent-ink); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: clamp(46px, 8vw, 92px) 0 clamp(30px, 5vw, 52px); position: relative; }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent-ink); margin: 0 0 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before {
+    content:""; width: 26px; height: 1px; background: var(--accent);
+  }
+  h1.title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(38px, 8vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  h1.title .dead-word { color: var(--dead); }
+  .cursor {
+    display: inline-block; width: 0.56ch; height: 0.92em; translate: 0 0.1em;
+    background: var(--accent); margin-left: 0.12em;
+    animation: blink 1.15s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .lede {
+    max-width: 60ch; margin: 26px 0 0; font-size: clamp(15px, 1.9vw, 18px);
+    color: var(--dim);
+  }
+  .lede a { border-bottom: 1px solid color-mix(in srgb, var(--link) 45%, transparent); }
+  .byline {
+    margin-top: 16px; font-family: var(--font-mono); font-size: 13px;
+    color: var(--dim); letter-spacing: 0.01em;
+  }
+  .byline a {
+    color: var(--accent-ink);
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
+  }
+  .disclaimer {
+    margin-top: 12px; font-family: var(--font-mono); font-size: 11.5px;
+    color: var(--faint); letter-spacing: 0.02em;
+  }
+
+  /* flatline graphic */
+  .flatline { margin-top: 34px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--panel) 55%, transparent); position: relative; overflow: hidden; }
+  .flatline svg { display: block; width: 100%; height: 78px; }
+  .flatline .ekg { fill: none; stroke: var(--dead); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round;
+    stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: draw 3.1s ease-out 0.2s forwards; }
+  .flatline .tag {
+    position: absolute; right: 12px; top: 50%; translate: 0 -50%;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em;
+    color: var(--faint); text-transform: uppercase; background: color-mix(in srgb, var(--bg) 60%, transparent);
+    padding: 3px 7px; border: 1px solid var(--border);
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: clamp(40px, 6vw, 66px) 0; }
+  .seclabel {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--faint); margin: 0 0 6px;
+  }
+  .seclabel b { color: var(--accent-ink); font-weight: 700; }
+  .sectitle { font-family: var(--font-mono); font-size: clamp(19px, 3vw, 26px); font-weight: 700;
+    letter-spacing: -0.01em; margin: 0 0 26px; }
+
+  /* ---------- Key numbers ---------- */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border); }
+  .stat { background: var(--panel); padding: 22px 20px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .stat .num { font-family: var(--font-mono); font-size: clamp(30px, 5vw, 46px); font-weight: 700;
+    line-height: 1; letter-spacing: -0.02em; color: var(--text); }
+  .stat .num.accent { color: var(--accent-ink); }
+  .stat .num.dead { color: var(--dead); }
+  .stat .lab { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--dim); }
+  .stat .sub { font-size: 12px; color: var(--faint); }
+
+  /* ---------- Charts ---------- */
+  .charts { display: grid; grid-template-columns: 1.35fr 1fr; gap: 20px; }
+  .card { background: var(--panel); border: 1px solid var(--border); padding: 22px 22px 20px; box-shadow: var(--shadow); }
+  .card h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; margin: 0 0 3px; }
+  .card .hint { font-size: 12px; color: var(--faint); margin: 0 0 20px; }
+  .card.span2 { grid-column: 1 / -1; }
+
+  /* timeline: vertical bars */
+  .timeline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; align-items: end;
+    height: 210px; padding-top: 10px; }
+  .tl-col { display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
+  .tl-bar-wrap { width: 100%; flex: 1; display: flex; align-items: flex-end; justify-content: center; }
+  .tl-bar { width: 74%; max-width: 46px; background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 55%, transparent));
+    border: 1px solid color-mix(in srgb, var(--accent) 60%, var(--border)); border-bottom: none;
+    position: relative; min-height: 3px; transform-origin: bottom; animation: grow 0.7s cubic-bezier(.2,.8,.2,1) both; }
+  .tl-bar.peak { background: linear-gradient(180deg, var(--dead), color-mix(in srgb, var(--dead) 45%, transparent));
+    border-color: color-mix(in srgb, var(--dead) 60%, var(--border)); }
+  .tl-bar .v { position: absolute; top: -20px; left: 50%; translate: -50% 0; font-family: var(--font-mono);
+    font-size: 12px; font-weight: 700; color: var(--text); }
+  .tl-m { font-family: var(--font-mono); font-size: 11px; color: var(--dim); letter-spacing: 0.04em; }
+  @keyframes grow { from { transform: scaleY(0); opacity: .4; } to { transform: scaleY(1); opacity: 1; } }
+
+  /* horizontal bar list (closure + category) */
+  .hbars { display: flex; flex-direction: column; gap: 13px; }
+  .hbar { display: grid; grid-template-columns: 116px 1fr 34px; align-items: center; gap: 12px; }
+  .hbar .k { font-family: var(--font-mono); font-size: 12px; color: var(--dim); letter-spacing: 0.02em; }
+  .hbar .track { height: 15px; background: var(--panel-2); border: 1px solid var(--border); position: relative; overflow: hidden; }
+  .hbar .fill { position: absolute; inset: 0 auto 0 0; background: var(--accent);
+    animation: expand 0.8s cubic-bezier(.2,.8,.2,1) both; }
+  .hbar .fill.c-x { background: var(--link); }
+  .hbar .fill.c-discord { background: #7c6bd6; }
+  .hbar .fill.c-docs { background: var(--accent); }
+  .hbar .fill.c-deleted { background: var(--dead); }
+  .hbar .n { font-family: var(--font-mono); font-size: 12px; font-weight: 700; text-align: right; color: var(--text); }
+  @keyframes expand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .hbar .track { transform-origin: left; }
+
+  /* ---------- Controls ---------- */
+  .controls { position: sticky; top: 58px; z-index: 30; background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px); border: 1px solid var(--border); padding: 14px; margin-bottom: 2px;
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .search { flex: 1 1 220px; display: flex; align-items: center; gap: 9px; background: var(--panel);
+    border: 1px solid var(--border-2); padding: 9px 12px; }
+  .search:focus-within { border-color: var(--accent); }
+  .search svg { width: 15px; height: 15px; flex: none; color: var(--faint); }
+  .search input { flex: 1; border: none; background: none; color: var(--text); font-family: var(--font-mono);
+    font-size: 13px; outline: none; min-width: 0; }
+  .search input::placeholder { color: var(--faint); }
+  .selects { display: flex; gap: 10px; flex-wrap: wrap; }
+  .field { display: flex; flex-direction: column; gap: 0; }
+  select { font-family: var(--font-mono); font-size: 12.5px; color: var(--text); background: var(--panel);
+    border: 1px solid var(--border-2); padding: 9px 11px; cursor: pointer; }
+  select:hover { border-color: var(--accent); }
+
+  /* filter chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0 20px; align-items: center; }
+  .chips .lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--faint); margin-right: 3px; }
+  .chip { font-family: var(--font-mono); font-size: 12px; padding: 5px 11px; border: 1px solid var(--border-2);
+    background: var(--panel); color: var(--dim); cursor: pointer; letter-spacing: 0.02em; }
+  .chip:hover { border-color: var(--accent); color: var(--text); }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent);
+    color: #12100a; font-weight: 700; }
+  :root[data-theme="dark"] .chip[aria-pressed="true"],
+  .chip[aria-pressed="true"] { color: #14110a; }
+
+  .resultline { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin: 0 0 12px;
+    letter-spacing: 0.02em; }
+  .resultline b { color: var(--accent-ink); }
+
+  /* ---------- Registry table ---------- */
+  .registry { border: 1px solid var(--border); background: var(--panel); }
+  .rhead, .row { display: grid; grid-template-columns: 58px 1.7fr 1fr 118px 150px; align-items: center; }
+  .rhead { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--faint); border-bottom: 1px solid var(--border-2); background: var(--panel-2); }
+  .rhead > div { padding: 12px 16px; }
+  .row { border-bottom: 1px solid var(--border); transition: background 0.12s ease; animation: rowin 0.4s ease both; }
+  .row:last-child { border-bottom: none; }
+  .row:hover { background: var(--panel-2); }
+  .row > div { padding: 15px 16px; }
+  @keyframes rowin { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
+
+  .c-idx { font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
+  .c-name { font-family: var(--font-mono); font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .c-cat { }
+  .cat-tag { font-family: var(--font-mono); font-size: 11px; padding: 3px 9px; border: 1px solid var(--border-2);
+    color: var(--dim); letter-spacing: 0.02em; white-space: nowrap; display: inline-block; }
+  .c-date { font-family: var(--font-mono); font-size: 13px; color: var(--dim); }
+  .c-date .approx { color: var(--faint); font-size: 11px; }
+  .c-link { }
+  .btn-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 12px;
+    color: var(--link); border: 1px solid color-mix(in srgb, var(--link) 40%, var(--border)); padding: 6px 11px;
+    white-space: nowrap; transition: all 0.12s ease; }
+  .btn-link:hover { text-decoration: none; border-color: var(--link); background: color-mix(in srgb, var(--link) 12%, transparent); }
+  .btn-link svg { width: 12px; height: 12px; }
+  .badge-dead { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--dead);
+    border: 1px dashed color-mix(in srgb, var(--dead) 55%, var(--border)); padding: 6px 10px; white-space: nowrap;
+    display: inline-block; }
+  .badge-soft { color: var(--faint); border-color: var(--border-2); }
+
+  .empty { padding: 48px 16px; text-align: center; font-family: var(--font-mono); color: var(--faint); font-size: 13px; }
+
+  /* mobile cards */
+  .m-only { display: none; }
+
+  @media (max-width: 760px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .charts { grid-template-columns: 1fr; }
+    .rhead { display: none; }
+    .registry { border: none; background: none; }
+    .row { display: block; border: 1px solid var(--border); background: var(--panel); margin-bottom: 10px; padding: 4px 2px; }
+    .row > div { padding: 6px 15px; }
+    .row .c-idx { padding-top: 14px; color: var(--accent-ink); }
+    .c-name { font-size: 16px; padding-top: 2px; }
+    .hbar { grid-template-columns: 92px 1fr 30px; }
+    .timeline { gap: 7px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .flatline .ekg { stroke-dashoffset: 0; }
+    .cursor { opacity: 1; }
+  }
+
+  footer { border-top: 1px solid var(--border); padding: 40px 0 60px; }
+  footer .shell { display: flex; flex-wrap: wrap; gap: 20px 40px; justify-content: space-between; align-items: flex-start; }
+  footer p { margin: 0; font-size: 13px; color: var(--dim); max-width: 46ch; }
+  footer .fmono { font-family: var(--font-mono); font-size: 11.5px; color: var(--faint); letter-spacing: 0.02em; }
+  footer a { color: var(--link); }
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="shell">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <b>Signal Lost</b>
+        <span>// shutdown registry</span>
+      </div>
+      <div class="topcount"><b id="tc-num">63</b> projects flatlined · 2026</div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="shell">
+      <p class="eyebrow">Crypto Shutdown Registry — 2026 to present</p>
+      <h1 class="title">The projects that went <span class="dead-word">dark</span><span class="cursor" aria-hidden="true"></span></h1>
+      <p class="lede">A running record of crypto products, protocols and chains that shut down in 2026 — with the date each one called it, and a link straight to the announcement. Source data compiled by <a href="https://x.com/0xvietnguyen" target="_blank" rel="noopener noreferrer">@0xvietnguyen</a>, current as of Jul 25, 2026.</p>
+      <p class="byline">Built &amp; published by <a href="https://x.com/lain_calvo" target="_blank" rel="noopener noreferrer">@lain_calvo</a></p>
+      <p class="disclaimer">As publicly reported. Categories are best-effort labels, not official classifications. Not financial advice.</p>
+    </div>
+    <div class="flatline">
+      <span class="tag" aria-hidden="true">Signal Lost</span>
+      <svg viewBox="0 0 1200 78" preserveAspectRatio="none" aria-hidden="true">
+        <path class="ekg" d="M0,39 L360,39 L378,39 L390,14 L404,64 L418,26 L430,39 L470,39 L486,39 L498,20 L512,58 L524,39 L560,39 L1200,39" />
+      </svg>
+    </div>
+  </header>
+
+  <main class="shell">
+
+    <!-- KEY NUMBERS -->
+    <section aria-labelledby="kn">
+      <p class="seclabel" id="kn">// <b>readout</b></p>
+      <div class="stats-grid" id="stats-grid"></div>
+    </section>
+
+    <!-- CHARTS -->
+    <section aria-labelledby="st">
+      <p class="seclabel">// <b>statistics</b></p>
+      <h2 class="sectitle" id="st">What the year looked like</h2>
+      <div class="charts">
+        <div class="card">
+          <h3>Shutdowns by month</h3>
+          <p class="hint">Count of projects that went dark each month of 2026.</p>
+          <div class="timeline" id="timeline"></div>
+        </div>
+        <div class="card">
+          <h3>How they announced it</h3>
+          <p class="hint">The channel each project used to call it.</p>
+          <div class="hbars" id="closure-bars"></div>
+        </div>
+        <div class="card span2">
+          <h3>By category</h3>
+          <p class="hint">Which corners of crypto lost the most projects. Click a bar to filter the registry below.</p>
+          <div class="hbars" id="cat-bars"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTRY -->
+    <section aria-labelledby="rg">
+      <p class="seclabel">// <b>the registry</b></p>
+      <h2 class="sectitle" id="rg">Browse every shutdown</h2>
+
+      <div class="controls">
+        <label class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="search" type="search" placeholder="search project name…" autocomplete="off" aria-label="Search projects by name">
+        </label>
+        <div class="selects">
+          <div class="field">
+            <select id="sel-cat" aria-label="Filter by category"></select>
+          </div>
+          <div class="field">
+            <select id="sel-closure" aria-label="Filter by how it shut down">
+              <option value="">All channels</option>
+              <option value="x">X announcement</option>
+              <option value="discord">Discord</option>
+              <option value="docs">Blog / forum / docs</option>
+              <option value="deleted">Account deleted</option>
+            </select>
+          </div>
+          <div class="field">
+            <select id="sel-sort" aria-label="Sort order">
+              <option value="date-desc">Newest first</option>
+              <option value="date-asc">Oldest first</option>
+              <option value="name-asc">Name A–Z</option>
+              <option value="name-desc">Name Z–A</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="chips" id="month-chips">
+        <span class="lbl">Month</span>
+      </div>
+
+      <p class="resultline" id="resultline"></p>
+
+      <div class="registry" id="registry">
+        <div class="rhead" aria-hidden="true">
+          <div>#</div><div>Project</div><div>Category</div><div>Date</div><div>Announcement</div>
+        </div>
+        <div id="rows"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p><b>Signal Lost</b> is an independent, read-only archive of crypto shutdowns in 2026. Every link points to the project's own announcement — verify before drawing conclusions.</p>
+      <div>
+        <p class="fmono">Built &amp; published by · <a href="https://x.com/lain_calvo" target="_blank" rel="noopener noreferrer">@lain_calvo</a></p>
+        <p class="fmono">Source data · <a href="https://x.com/0xvietnguyen" target="_blank" rel="noopener noreferrer">@0xvietnguyen</a> · current to Jul 25, 2026</p>
+        <p class="fmono">Missing a shutdown or spotted an error? DM <a href="https://x.com/lain_calvo" target="_blank" rel="noopener noreferrer">@lain_calvo</a> — the list is meant to grow.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- DATA: 63 crypto projects that shut down in 2026 ----
+  // closure: x | discord | docs | deleted
+  // dayKnown false => only the month is known
+  var DATA = [
+    {n:"Dango",                iso:"2026-07-25", day:true,  url:"https://x.com/dango/status/2080707796144705625",              c:"x",       cat:"DeFi"},
+    {n:"BitMEX",               iso:"2026-07-23", day:true,  url:"https://x.com/bitmex/status/2080201602456301580",             c:"x",       cat:"Trading/CEX"},
+    {n:"ODOS",                 iso:"2026-07-23", day:true,  url:"https://x.com/odosprotocol/status/2080337624922018014",       c:"x",       cat:"DeFi"},
+    {n:"Movement Labs",        iso:"2026-07-22", day:true,  url:"https://x.com/wublockchain/status/2079641014067925232",       c:"x",       cat:"L2/Infra"},
+    {n:"Secondfi",             iso:"2026-07-22", day:true,  url:"https://x.com/secondfiapp/status/2079788851204329886",        c:"x",       cat:"DeFi"},
+    {n:"Xenea",                iso:"2026-07-13", day:true,  url:"https://x.com/xenea_io/status/2076629402473885821",           c:"x",       cat:"L2/Infra"},
+    {n:"AscendEX",             iso:"2026-07-11", day:true,  url:"https://x.com/ascendex_/status/2075756398877814940",          c:"x",       cat:"Trading/CEX"},
+    {n:"Zapper",               iso:"2026-07-09", day:true,  url:"https://x.com/sebaudet26/status/2074918469376856150",         c:"x",       cat:"DeFi"},
+    {n:"Ctrl Wallet",          iso:"2026-07-07", day:true,  url:"https://x.com/ctrl_wallet/status/2074310251378270343",        c:"x",       cat:"Wallet"},
+    {n:"Loopring",             iso:"2026-07-03", day:true,  url:"https://x.com/loopringorg/status/2072989477405835340",        c:"x",       cat:"L2/Infra"},
+    {n:"Polygon zkEVM",        iso:"2026-07-01", day:true,  url:"https://forum.polygon.technology/",                           c:"docs",    cat:"L2/Infra"},
+    {n:"Sophon",               iso:"2026-06-26", day:true,  url:"https://x.com/sophon/status/2070192257295335800",             c:"x",       cat:"L2/Infra"},
+    {n:"ionic",                iso:"2026-06-18", day:true,  url:"https://x.com/ionicmoney/status/2067518110635016213",         c:"x",       cat:"DeFi"},
+    {n:"Soundness",            iso:"2026-06-18", day:true,  url:"https://x.com/soundnesslabs/status/2067492901886796006",      c:"x",       cat:"L2/Infra"},
+    {n:"Swell",                iso:"2026-06-17", day:true,  url:"https://x.com/swellnetworkio/status/2067031459731570952",     c:"x",       cat:"DeFi"},
+    {n:"Powerloom",            iso:"2026-06-16", day:true,  url:"https://x.com/powerloomorg/status/2066566700842221818",       c:"x",       cat:"L2/Infra"},
+    {n:"Satori",               iso:"2026-06-16", day:true,  url:"https://x.com/satorifinance/status/2066909927973740797",      c:"x",       cat:"DeFi"},
+    {n:"Ventuals",             iso:"2026-06-15", day:true,  url:"https://x.com/ventuals/status/2066517389169025294",           c:"x",       cat:"DeFi"},
+    {n:"Fishing Frenzy",       iso:"2026-06-15", day:true,  url:"https://x.com/fishingfrenzyco/status/2066376668357566509",    c:"x",       cat:"Gaming"},
+    {n:"Pudgy Party",          iso:"2026-06-13", day:true,  url:"https://x.com/playpudgyparty/status/2065555998031384917",     c:"x",       cat:"Gaming"},
+    {n:"Botanix",              iso:"2026-06-10", day:true,  url:"https://x.com/botanix/status/2064420116578590941",            c:"x",       cat:"L2/Infra"},
+    {n:"Hyli",                 iso:"2026-06-10", day:true,  url:"https://x.com/hyli_org/status/2064678967035224555",           c:"x",       cat:"L2/Infra"},
+    {n:"Radiant Capital",      iso:"2026-06-01", day:true,  url:"https://x.com/rdntcapital/status/2061457987441447041",        c:"x",       cat:"DeFi"},
+    {n:"Zero Network",         iso:"2026-05-22", day:true,  url:"https://x.com/zerodotnetwork/status/2057529610628128917",     c:"x",       cat:"L2/Infra"},
+    {n:"Everclear",            iso:"2026-05-21", day:true,  url:"https://x.com/everclearorg/status/2057488000003477886",       c:"x",       cat:"L2/Infra"},
+    {n:"Syndicate",            iso:"2026-05-21", day:true,  url:"https://x.com/syndicateio/status/2057291537860706672",        c:"x",       cat:"L2/Infra"},
+    {n:"Fantasy",              iso:"2026-05-20", day:true,  url:"https://x.com/fantasy_top_/status/2057120720799383935",       c:"x",       cat:"Gaming"},
+    {n:"Legend",               iso:"2026-05-13", day:true,  url:"https://x.com/jaysonhobby/status/2054253835003347306",        c:"x",       cat:"Other"},
+    {n:"Phi",                  iso:"2026-05-04", day:true,  url:"https://x.com/phi_xyz/status/2051182324080083227",            c:"x",       cat:"NFT/Social"},
+    {n:"Carrot",               iso:"2026-05-01", day:true,  url:"https://x.com/deficarrot/status/2049907092664762624",         c:"x",       cat:"DeFi"},
+    {n:"Genso Online",         iso:"2026-04-30", day:true,  url:null,                                                          c:"deleted", cat:"Gaming"},
+    {n:"Luckio",               iso:"2026-04-24", day:true,  url:"https://x.com/luckio/status/2047642254681231545",             c:"x",       cat:"Other"},
+    {n:"Beets",                iso:"2026-04-17", day:true,  url:"https://x.com/beets_fi/status/2045030774877966595",           c:"x",       cat:"DeFi"},
+    {n:"Mint Blockchain",      iso:"2026-04-17", day:true,  url:"https://x.com/mint_blockchain/status/2044980026819617147",    c:"x",       cat:"L2/Infra"},
+    {n:"Pixel Heroes Adventure",iso:"2026-04-17",day:true,  url:null,                                                          c:"discord", cat:"Gaming"},
+    {n:"XOCIETY",              iso:"2026-04-16", day:true,  url:"https://x.com/xocietyofficial/status/2044699481690849653",    c:"x",       cat:"Gaming"},
+    {n:"77-Bit",               iso:"2026-04-16", day:true,  url:"https://x.com/the77bit/status/2044522987886440940",           c:"x",       cat:"Gaming"},
+    {n:"Opulous",              iso:"2026-04-15", day:true,  url:"https://x.com/opulousapp/status/2044409892237107327",         c:"x",       cat:"NFT/Social"},
+    {n:"Foundation",           iso:"2026-04-15", day:true,  url:null,                                                          c:"deleted", cat:"NFT/Social"},
+    {n:"Megaphone",            iso:"2026-04-12", day:true,  url:"https://x.com/megaphone_hq/status/2043224242054217793",       c:"x",       cat:"NFT/Social"},
+    {n:"Seamless Protocol",    iso:"2026-04-08", day:true,  url:"https://x.com/seamlessfi/status/2041572728239747558",         c:"x",       cat:"DeFi"},
+    {n:"Intergaze",            iso:"2026-04-03", day:true,  url:"https://x.com/intergaze_xyz/status/2039881751170818227",      c:"x",       cat:"NFT/Social"},
+    {n:"Dmail",                iso:"2026-04-02", day:true,  url:"https://x.com/dmailofficial/status/2039749505902694636",      c:"x",       cat:"NFT/Social"},
+    {n:"Leap Wallet",          iso:"2026-04-02", day:true,  url:"https://x.com/leap_wallet/status/2039729267685376026",        c:"x",       cat:"Wallet"},
+    {n:"Fey",                  iso:"2026-04-01", day:true,  url:null,                                                          c:"deleted", cat:"Other"},
+    {n:"Magic Eden Wallet",    iso:"2026-04-01", day:true,  url:"https://help.magiceden.io/",                                  c:"docs",    cat:"Wallet"},
+    {n:"Pixiland",             iso:"2026-04-15", day:false, url:null,                                                          c:"discord", cat:"Gaming"},
+    {n:"Yupp AI",              iso:"2026-03-31", day:true,  url:"https://x.com/pankaj/status/2039010092255969712",             c:"x",       cat:"AI"},
+    {n:"Bit.com",              iso:"2026-03-15", day:false, url:null,                                                          c:"deleted", cat:"Trading/CEX"},
+    {n:"MilkyWay",             iso:"2026-03-26", day:true,  url:"https://x.com/milky_way_zone/status/2037020332775923746",     c:"x",       cat:"L2/Infra"},
+    {n:"Tally",                iso:"2026-03-17", day:true,  url:"https://x.com/tallyxyz/status/2033917127304814802",           c:"x",       cat:"DeFi"},
+    {n:"Blockfills",           iso:"2026-03-16", day:true,  url:"https://x.com/blockfills/status/2033310738865897473",         c:"x",       cat:"Trading/CEX"},
+    {n:"Genome Protocol",      iso:"2026-03-11", day:true,  url:"https://x.com/genome_protocol/status/2031466677020598412",    c:"x",       cat:"Other"},
+    {n:"Datahaven",            iso:"2026-03-04", day:true,  url:null,                                                          c:"deleted", cat:"L2/Infra"},
+    {n:"Angle Protocol",       iso:"2026-03-04", day:true,  url:"https://x.com/angleprotocol/status/2029161525580112263",      c:"x",       cat:"DeFi"},
+    {n:"Step Finance",         iso:"2026-02-24", day:true,  url:"https://x.com/stepfinance_/status/2025986934112145849",       c:"x",       cat:"DeFi"},
+    {n:"Remora Markets",       iso:"2026-02-24", day:true,  url:"https://x.com/remoramarkets/status/2025896960938995937",      c:"x",       cat:"DeFi"},
+    {n:"Parsec",               iso:"2026-02-19", day:true,  url:"https://x.com/parsec_finance/status/2024519983330468049",     c:"x",       cat:"Other"},
+    {n:"Zerolandxyz",          iso:"2026-02-16", day:true,  url:null,                                                          c:"deleted", cat:"Other"},
+    {n:"Polynomial",           iso:"2026-02-13", day:true,  url:"https://x.com/polynomialfi/status/2022344918111494169",       c:"x",       cat:"DeFi"},
+    {n:"NGS",                  iso:"2026-01-28", day:true,  url:"https://x.com/niftygateway/status/2016254238347891112",       c:"x",       cat:"NFT/Social"},
+    {n:"Entropy",              iso:"2026-01-24", day:true,  url:null,                                                          c:"deleted", cat:"Other"},
+    {n:"Slingshot",            iso:"2026-01-21", day:true,  url:"https://x.com/slingshotcrypto/status/2015912783112499513",    c:"x",       cat:"DeFi"}
+  ];
+
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var CLOSURE_LABEL = { x:"X announcement", discord:"Discord", docs:"Blog / forum / docs", deleted:"Account deleted" };
+  var CLOSURE_ORDER = ["x","deleted","discord","docs"];
+
+  // active months in the data (Jan..Jul)
+  var monthIdx = function (d) { return parseInt(d.iso.slice(5,7),10) - 1; };
+  var activeMonths = [];
+  DATA.forEach(function (d) { var m = monthIdx(d); if (activeMonths.indexOf(m) === -1) activeMonths.push(m); });
+  activeMonths.sort(function (a,b){ return a-b; });
+
+  // ---------- Derived stats ----------
+  var byMonth = {}; activeMonths.forEach(function (m){ byMonth[m]=0; });
+  var byClosure = {}; var byCat = {};
+  DATA.forEach(function (d) {
+    byMonth[monthIdx(d)]++;
+    byClosure[d.c] = (byClosure[d.c]||0) + 1;
+    byCat[d.cat] = (byCat[d.cat]||0) + 1;
+  });
+  var peakMonth = activeMonths[0];
+  activeMonths.forEach(function (m){ if (byMonth[m] > byMonth[peakMonth]) peakMonth = m; });
+  var deletedCount = byClosure.deleted || 0;
+  var avgPerMonth = Math.round(DATA.length / activeMonths.length);
+
+  var el = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+
+  // ---------- Key numbers ----------
+  var STAT_CARDS = [
+    { num: DATA.length,          cls:"dead",   lab:"Projects flatlined", sub:"in 2026 so far" },
+    { num: MONTHS[peakMonth],    cls:"accent", lab:"Peak month",         sub:byMonth[peakMonth] + " shutdowns" },
+    { num: avgPerMonth,          cls:"",       lab:"Avg / month",        sub:"across " + activeMonths.length + " months" },
+    { num: deletedCount,         cls:"dead",   lab:"Went dark silently", sub:"deleted account, no post" }
+  ];
+  el("stats-grid").innerHTML = STAT_CARDS.map(function (s) {
+    return '<div class="stat"><span class="num ' + s.cls + '">' + esc(s.num) +
+      '</span><span class="lab">' + esc(s.lab) + '</span><span class="sub">' + esc(s.sub) + '</span></div>';
+  }).join("");
+  el("tc-num").textContent = DATA.length;
+
+  // ---------- Timeline ----------
+  var tlMax = Math.max.apply(null, activeMonths.map(function (m){ return byMonth[m]; }));
+  el("timeline").innerHTML = activeMonths.map(function (m, i) {
+    var v = byMonth[m];
+    var h = Math.max(4, Math.round((v / tlMax) * 100));
+    var peak = (m === peakMonth) ? " peak" : "";
+    return '<div class="tl-col"><div class="tl-bar-wrap">' +
+      '<div class="tl-bar' + peak + '" style="height:' + h + '%;animation-delay:' + (i*70) + 'ms">' +
+      '<span class="v">' + v + '</span></div></div>' +
+      '<span class="tl-m">' + MONTHS[m] + '</span></div>';
+  }).join("");
+
+  // ---------- Closure bars ----------
+  var closTotal = DATA.length;
+  el("closure-bars").innerHTML = CLOSURE_ORDER.filter(function (k){ return byClosure[k]; }).map(function (k, i) {
+    var v = byClosure[k] || 0;
+    var pct = Math.round((v / closTotal) * 100);
+    return '<div class="hbar"><span class="k">' + esc(CLOSURE_LABEL[k]) + '</span>' +
+      '<span class="track"><span class="fill c-' + k + '" style="width:' + pct + '%;animation-delay:' + (i*90) + 'ms"></span></span>' +
+      '<span class="n">' + v + '</span></div>';
+  }).join("");
+
+  // ---------- Category bars (sorted desc, clickable) ----------
+  var catList = Object.keys(byCat).sort(function (a,b){ return byCat[b]-byCat[a]; });
+  var catMax = Math.max.apply(null, catList.map(function (c){ return byCat[c]; }));
+  el("cat-bars").innerHTML = catList.map(function (c, i) {
+    var v = byCat[c];
+    var pct = Math.round((v / catMax) * 100);
+    return '<button class="hbar" data-cat="' + esc(c) + '" style="all:unset;display:grid;grid-template-columns:116px 1fr 34px;align-items:center;gap:12px;cursor:pointer">' +
+      '<span class="k">' + esc(c) + '</span>' +
+      '<span class="track"><span class="fill" style="width:' + pct + '%;animation-delay:' + (i*70) + 'ms"></span></span>' +
+      '<span class="n">' + v + '</span></button>';
+  }).join("");
+
+  // ---------- Filters / controls ----------
+  var state = { q:"", cat:"", closure:"", month:"", sort:"date-desc" };
+
+  // category select
+  var selCat = el("sel-cat");
+  selCat.innerHTML = '<option value="">All categories</option>' +
+    catList.slice().sort().map(function (c){ return '<option value="' + esc(c) + '">' + esc(c) + '</option>'; }).join("");
+
+  // month chips
+  var chipWrap = el("month-chips");
+  activeMonths.forEach(function (m) {
+    var b = document.createElement("button");
+    b.className = "chip"; b.setAttribute("aria-pressed","false");
+    b.dataset.month = String(m); b.textContent = MONTHS[m];
+    chipWrap.appendChild(b);
+  });
+
+  function fmtDate(d) {
+    var mo = MONTHS[monthIdx(d)];
+    if (!d.day) return '<span class="approx">≈ </span>' + mo + " 2026";
+    return mo + " " + parseInt(d.iso.slice(8,10),10) + ", 2026";
+  }
+
+  function rowHTML(d, i) {
+    var link = d.url
+      ? '<a class="btn-link" href="' + esc(d.url) + '" target="_blank" rel="noopener noreferrer">View announcement <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>'
+      : (d.c === "discord"
+          ? '<span class="badge-dead badge-soft">Discord only</span>'
+          : '<span class="badge-dead">Account deleted</span>');
+    var idx = ("00" + (i + 1)).slice(-3);
+    return '<div class="row" role="row" style="animation-delay:' + Math.min(i*22,500) + 'ms">' +
+      '<div class="c-idx">' + idx + '</div>' +
+      '<div class="c-name">' + esc(d.n) + '</div>' +
+      '<div class="c-cat"><span class="cat-tag">' + esc(d.cat) + '</span></div>' +
+      '<div class="c-date">' + fmtDate(d) + '</div>' +
+      '<div class="c-link">' + link + '</div>' +
+      '</div>';
+  }
+
+  function apply() {
+    var q = state.q.trim().toLowerCase();
+    var list = DATA.filter(function (d) {
+      if (q && d.n.toLowerCase().indexOf(q) === -1) return false;
+      if (state.cat && d.cat !== state.cat) return false;
+      if (state.closure && d.c !== state.closure) return false;
+      if (state.month !== "" && monthIdx(d) !== +state.month) return false;
+      return true;
+    });
+
+    list.sort(function (a, b) {
+      switch (state.sort) {
+        case "date-asc":  return a.iso < b.iso ? -1 : a.iso > b.iso ? 1 : 0;
+        case "name-asc":  return a.n.toLowerCase() < b.n.toLowerCase() ? -1 : 1;
+        case "name-desc": return a.n.toLowerCase() > b.n.toLowerCase() ? -1 : 1;
+        default:          return a.iso > b.iso ? -1 : a.iso < b.iso ? 1 : 0; // date-desc
+      }
+    });
+
+    var rows = el("rows");
+    if (!list.length) {
+      rows.innerHTML = '<div class="empty">No projects match these filters. Try clearing the search or a chip.</div>';
+    } else {
+      rows.innerHTML = list.map(rowHTML).join("");
+    }
+
+    var parts = [];
+    if (state.q) parts.push('“' + esc(state.q) + '”');
+    if (state.cat) parts.push(esc(state.cat));
+    if (state.closure) parts.push(esc(CLOSURE_LABEL[state.closure]));
+    if (state.month !== "") parts.push(MONTHS[+state.month]);
+    el("resultline").innerHTML = "Showing <b>" + list.length + "</b> of " + DATA.length +
+      (parts.length ? " · filtered by " + parts.join(" · ") : " projects");
+  }
+
+  // wire up
+  el("search").addEventListener("input", function (e){ state.q = e.target.value; apply(); });
+  selCat.addEventListener("change", function (e){ state.cat = e.target.value; apply(); });
+  el("sel-closure").addEventListener("change", function (e){ state.closure = e.target.value; apply(); });
+  el("sel-sort").addEventListener("change", function (e){ state.sort = e.target.value; apply(); });
+
+  chipWrap.addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    var m = b.dataset.month;
+    if (state.month === m) { state.month = ""; b.setAttribute("aria-pressed","false"); }
+    else {
+      state.month = m;
+      Array.prototype.forEach.call(chipWrap.querySelectorAll(".chip"), function (c){ c.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+    }
+    apply();
+  });
+
+  // clicking a category bar filters the registry + scrolls to it
+  el("cat-bars").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-cat]"); if (!b) return;
+    var c = b.dataset.cat;
+    state.cat = (state.cat === c) ? "" : c;
+    selCat.value = state.cat;
+    apply();
+    document.getElementById("rg").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  apply();
+})();
+</script>
+
+</body>
+</html>
