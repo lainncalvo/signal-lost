@@ -315,7 +315,7 @@
 
   /* ---------- Registry table ---------- */
   .registry { border: 1px solid var(--border); background: var(--panel); }
-  .rhead, .row { display: grid; grid-template-columns: 58px 1.7fr 1fr 118px 210px; align-items: center; }
+  .rhead, .row { display: grid; grid-template-columns: 52px 1.45fr 0.95fr 1fr 112px 210px; align-items: center; }
   .rhead { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--faint); border-bottom: 1px solid var(--border-2); background: var(--panel-2); }
   .rhead > div { padding: 12px 16px; }
@@ -330,6 +330,59 @@
   .c-cat { }
   .cat-tag { font-family: var(--font-mono); font-size: 11px; padding: 3px 9px; border: 1px solid var(--border-2);
     color: var(--dim); letter-spacing: 0.02em; white-space: nowrap; display: inline-block; }
+  .why-chip { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px;
+    border: 1px solid currentColor; white-space: nowrap; display: inline-block; letter-spacing: 0.02em; }
+  .why-funding{color:#a8681a} .why-exploit{color:#b23530} .why-traction{color:#5f6874}
+  .why-market{color:#3f6f9e} .why-regulatory{color:#7d43a0} .why-insolvency{color:#a32f45}
+  .why-acquired{color:#1f7c70} .why-dependency{color:#8a6f10} .why-voluntary{color:#55703f}
+  .why-unknown{color:var(--faint);border-style:dashed}
+  @media (prefers-color-scheme: dark) {
+    .why-funding{color:#d98c2b} .why-exploit{color:#e0655f} .why-traction{color:#98a1ae}
+    .why-market{color:#6f9bd1} .why-regulatory{color:#b06fd1} .why-insolvency{color:#d1566f}
+    .why-acquired{color:#4fae9b} .why-dependency{color:#c9a227} .why-voluntary{color:#8fae74}
+  }
+  :root[data-theme="dark"] .why-funding{color:#d98c2b}
+  :root[data-theme="dark"] .why-exploit{color:#e0655f}
+  :root[data-theme="dark"] .why-traction{color:#98a1ae}
+  :root[data-theme="dark"] .why-market{color:#6f9bd1}
+  :root[data-theme="dark"] .why-regulatory{color:#b06fd1}
+  :root[data-theme="dark"] .why-insolvency{color:#d1566f}
+  :root[data-theme="dark"] .why-acquired{color:#4fae9b}
+  :root[data-theme="dark"] .why-dependency{color:#c9a227}
+  :root[data-theme="dark"] .why-voluntary{color:#8fae74}
+  :root[data-theme="light"] .why-funding{color:#a8681a}
+  :root[data-theme="light"] .why-exploit{color:#b23530}
+  :root[data-theme="light"] .why-traction{color:#5f6874}
+  :root[data-theme="light"] .why-market{color:#3f6f9e}
+  :root[data-theme="light"] .why-regulatory{color:#7d43a0}
+  :root[data-theme="light"] .why-insolvency{color:#a32f45}
+  :root[data-theme="light"] .why-acquired{color:#1f7c70}
+  :root[data-theme="light"] .why-dependency{color:#8a6f10}
+  :root[data-theme="light"] .why-voluntary{color:#55703f}
+
+  .row.has-detail { cursor: pointer; }
+  .row.has-detail:hover .c-name { color: var(--accent-ink); }
+  .detail { grid-column: 1 / -1; border-top: 1px dashed var(--border-2);
+    background: var(--panel-2); padding: 16px; display: none; }
+  .row.open .detail { display: block; }
+  .row.open { background: var(--panel-2); }
+  .detail p { margin: 0 0 10px; font-size: 14px; color: var(--text); max-width: 78ch; }
+  .detail .why-full { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--faint); margin: 0 0 8px; }
+  .detail .figs { display: flex; flex-wrap: wrap; gap: 10px; }
+  .detail .fig { font-family: var(--font-mono); font-size: 12px; border: 1px solid var(--border-2);
+    padding: 5px 10px; color: var(--dim); }
+  .detail .fig b { color: var(--accent-ink); font-weight: 700; margin-left: 6px; }
+
+  .xrow { display: grid; grid-template-columns: 116px 1fr 34px; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .xrow:last-child { margin-bottom: 0; }
+  .xbar { display: flex; height: 16px; border: 1px solid var(--border); overflow: hidden; }
+  .xseg { height: 100%; }
+  .xlegend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid var(--border); }
+  .xlegend span { font-family: var(--font-mono); font-size: 11px; display: inline-flex; align-items: center; gap: 6px; }
+  .xlegend i { width: 10px; height: 10px; display: inline-block; background: currentColor; }
+
   .c-date { font-family: var(--font-mono); font-size: 13px; color: var(--dim); }
   .c-date .approx { color: var(--faint); font-size: 11px; }
   .c-link { }
@@ -348,7 +401,7 @@
   /* mobile cards */
   .m-only { display: none; }
 
-  @media (max-width: 760px) {
+  @media (max-width: 940px) {
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .charts { grid-template-columns: 1fr; }
     .rhead { display: none; }
@@ -357,7 +410,10 @@
     .row > div { padding: 6px 15px; }
     .row .c-idx { padding-top: 14px; color: var(--accent-ink); }
     .c-name { font-size: 16px; padding-top: 2px; }
+    .c-why { padding-top: 2px; }
+    .detail { padding: 14px 15px; margin-top: 6px; }
     .hbar { grid-template-columns: 92px 1fr 30px; }
+    .xrow { grid-template-columns: 92px 1fr 30px; }
     .timeline { gap: 7px; }
   }
 
@@ -430,6 +486,16 @@
           <p class="hint">The channel each project used to call it.</p>
           <div class="hbars" id="closure-bars"></div>
         </div>
+        <div class="card">
+          <h3>Why they died</h3>
+          <p class="hint">The reason each shutdown was attributed to. Click a bar to filter.</p>
+          <div class="hbars" id="why-bars"></div>
+        </div>
+        <div class="card">
+          <h3>What kills what</h3>
+          <p class="hint">How each category died. Segment width is that reason's share of the category.</p>
+          <div id="cross"></div>
+        </div>
         <div class="card span2">
           <h3>By category</h3>
           <p class="hint">Which corners of crypto lost the most projects. Click a bar to filter the registry below.</p>
@@ -463,6 +529,9 @@
             </select>
           </div>
           <div class="field">
+            <select id="sel-why" aria-label="Filter by reason for shutdown"></select>
+          </div>
+          <div class="field">
             <select id="sel-sort" aria-label="Sort order">
               <option value="date-desc">Newest first</option>
               <option value="date-asc">Oldest first</option>
@@ -481,7 +550,7 @@
 
       <div class="registry" id="registry">
         <div class="rhead" aria-hidden="true">
-          <div>#</div><div>Project</div><div>Category</div><div>Date</div><div>Announcement</div>
+          <div>#</div><div>Project</div><div>Category</div><div>Why</div><div>Date</div><div>Announcement</div>
         </div>
         <div id="rows"></div>
       </div>
@@ -518,7 +587,8 @@
             <h3>Additions, verification &amp; maintenance</h3>
             <p>On top of those sources, <a href="https://x.com/lain_calvo" target="_blank" rel="noopener noreferrer">@lain_calvo</a> built this site and keeps the registry going: adding new shutdowns as they happen, categorizing every project, and linking each entry back to its original announcement.</p>
             <p><b>How entries are sourced.</b> Most link to the project's own announcement — an X post, a blog post, a governance forum thread. Where no primary announcement could be found, the entry links to press coverage instead and is tagged <b>Press coverage</b>, so you always know what kind of source you are reading. A handful announced a shutdown with no archivable link; those are marked <b>Link not archived</b>.</p>
-            <p class="mono-note">Categories are best-effort labels, not official classifications. Not financial advice.</p>
+            <p><b>How the reason is decided.</b> A shutdown reason is an interpretation, not a hard fact — a project may say "strategic decision" when it in fact ran out of money. The tag reflects <b>what the source says</b>; the one-line note carries the nuance. Where no reason was stated anywhere, the entry is marked <b>Not reported</b> rather than guessed. Figures are only included when a source states them explicitly.</p>
+            <p class="mono-note">Categories and reasons are best-effort labels, not official classifications. Not financial advice.</p>
           </div>
         </div>
       </section>
@@ -565,120 +635,134 @@
   // closure: x | discord | docs | deleted
   // dayKnown false => only the month is known
   var DATA = [
-    {n:"Dango",                iso:"2026-07-25", day:true,  url:"https://x.com/dango/status/2080707796144705625",              c:"x",       cat:"DeFi"},
-    {n:"BitMEX",               iso:"2026-07-23", day:true,  url:"https://x.com/bitmex/status/2080201602456301580",             c:"x",       cat:"Trading/CEX"},
-    {n:"ODOS",                 iso:"2026-07-23", day:true,  url:"https://x.com/odosprotocol/status/2080337624922018014",       c:"x",       cat:"DeFi"},
-    {n:"Movement Labs",        iso:"2026-07-22", day:true,  url:"https://x.com/wublockchain/status/2079641014067925232",       c:"x",       cat:"L2/Infra"},
-    {n:"Secondfi",             iso:"2026-07-22", day:true,  url:"https://x.com/secondfiapp/status/2079788851204329886",        c:"x",       cat:"DeFi"},
-    {n:"Xenea",                iso:"2026-07-13", day:true,  url:"https://x.com/xenea_io/status/2076629402473885821",           c:"x",       cat:"L2/Infra"},
-    {n:"AscendEX",             iso:"2026-07-11", day:true,  url:"https://x.com/ascendex_/status/2075756398877814940",          c:"x",       cat:"Trading/CEX"},
-    {n:"Zapper",               iso:"2026-07-09", day:true,  url:"https://x.com/sebaudet26/status/2074918469376856150",         c:"x",       cat:"DeFi"},
-    {n:"Ctrl Wallet",          iso:"2026-07-07", day:true,  url:"https://x.com/ctrl_wallet/status/2074310251378270343",        c:"x",       cat:"Wallet"},
-    {n:"Loopring",             iso:"2026-07-03", day:true,  url:"https://x.com/loopringorg/status/2072989477405835340",        c:"x",       cat:"L2/Infra"},
-    {n:"Polygon zkEVM",        iso:"2026-07-01", day:true,  url:"https://forum.polygon.technology/",                           c:"docs",    cat:"L2/Infra"},
-    {n:"Sophon",               iso:"2026-06-26", day:true,  url:"https://x.com/sophon/status/2070192257295335800",             c:"x",       cat:"L2/Infra"},
-    {n:"ionic",                iso:"2026-06-18", day:true,  url:"https://x.com/ionicmoney/status/2067518110635016213",         c:"x",       cat:"DeFi"},
-    {n:"Soundness",            iso:"2026-06-18", day:true,  url:"https://x.com/soundnesslabs/status/2067492901886796006",      c:"x",       cat:"L2/Infra"},
-    {n:"Swell",                iso:"2026-06-17", day:true,  url:"https://x.com/swellnetworkio/status/2067031459731570952",     c:"x",       cat:"DeFi"},
-    {n:"Powerloom",            iso:"2026-06-16", day:true,  url:"https://x.com/powerloomorg/status/2066566700842221818",       c:"x",       cat:"L2/Infra"},
-    {n:"Satori",               iso:"2026-06-16", day:true,  url:"https://x.com/satorifinance/status/2066909927973740797",      c:"x",       cat:"DeFi"},
-    {n:"Ventuals",             iso:"2026-06-15", day:true,  url:"https://x.com/ventuals/status/2066517389169025294",           c:"x",       cat:"DeFi"},
-    {n:"Fishing Frenzy",       iso:"2026-06-15", day:true,  url:"https://x.com/fishingfrenzyco/status/2066376668357566509",    c:"x",       cat:"Gaming"},
-    {n:"Pudgy Party",          iso:"2026-06-13", day:true,  url:"https://x.com/playpudgyparty/status/2065555998031384917",     c:"x",       cat:"Gaming"},
-    {n:"Botanix",              iso:"2026-06-10", day:true,  url:"https://x.com/botanix/status/2064420116578590941",            c:"x",       cat:"L2/Infra"},
-    {n:"Hyli",                 iso:"2026-06-10", day:true,  url:"https://x.com/hyli_org/status/2064678967035224555",           c:"x",       cat:"L2/Infra"},
-    {n:"Radiant Capital",      iso:"2026-06-01", day:true,  url:"https://x.com/rdntcapital/status/2061457987441447041",        c:"x",       cat:"DeFi"},
-    {n:"Zero Network",         iso:"2026-05-22", day:true,  url:"https://x.com/zerodotnetwork/status/2057529610628128917",     c:"x",       cat:"L2/Infra"},
-    {n:"Everclear",            iso:"2026-05-21", day:true,  url:"https://x.com/everclearorg/status/2057488000003477886",       c:"x",       cat:"L2/Infra"},
-    {n:"Syndicate",            iso:"2026-05-21", day:true,  url:"https://x.com/syndicateio/status/2057291537860706672",        c:"x",       cat:"L2/Infra"},
-    {n:"Fantasy",              iso:"2026-05-20", day:true,  url:"https://x.com/fantasy_top_/status/2057120720799383935",       c:"x",       cat:"Gaming"},
-    {n:"Legend",               iso:"2026-05-13", day:true,  url:"https://x.com/jaysonhobby/status/2054253835003347306",        c:"x",       cat:"Other"},
-    {n:"Phi",                  iso:"2026-05-04", day:true,  url:"https://x.com/phi_xyz/status/2051182324080083227",            c:"x",       cat:"NFT/Social"},
-    {n:"Carrot",               iso:"2026-05-01", day:true,  url:"https://x.com/deficarrot/status/2049907092664762624",         c:"x",       cat:"DeFi"},
-    {n:"Genso Online",         iso:"2026-04-30", day:true,  url:null,                                                          c:"deleted", cat:"Gaming"},
-    {n:"Luckio",               iso:"2026-04-24", day:true,  url:"https://x.com/luckio/status/2047642254681231545",             c:"x",       cat:"Other"},
-    {n:"Beets",                iso:"2026-04-17", day:true,  url:"https://x.com/beets_fi/status/2045030774877966595",           c:"x",       cat:"DeFi"},
-    {n:"Mint Blockchain",      iso:"2026-04-17", day:true,  url:"https://x.com/mint_blockchain/status/2044980026819617147",    c:"x",       cat:"L2/Infra"},
-    {n:"Pixel Heroes Adventure",iso:"2026-04-17",day:true,  url:null,                                                          c:"discord", cat:"Gaming"},
-    {n:"XOCIETY",              iso:"2026-04-16", day:true,  url:"https://x.com/xocietyofficial/status/2044699481690849653",    c:"x",       cat:"Gaming"},
-    {n:"77-Bit",               iso:"2026-04-16", day:true,  url:"https://x.com/the77bit/status/2044522987886440940",           c:"x",       cat:"Gaming"},
-    {n:"Opulous",              iso:"2026-04-15", day:true,  url:"https://x.com/opulousapp/status/2044409892237107327",         c:"x",       cat:"NFT/Social"},
-    {n:"Foundation",           iso:"2026-04-15", day:true,  url:null,                                                          c:"deleted", cat:"NFT/Social"},
-    {n:"Megaphone",            iso:"2026-04-12", day:true,  url:"https://x.com/megaphone_hq/status/2043224242054217793",       c:"x",       cat:"NFT/Social"},
-    {n:"Seamless Protocol",    iso:"2026-04-08", day:true,  url:"https://x.com/seamlessfi/status/2041572728239747558",         c:"x",       cat:"DeFi"},
-    {n:"Intergaze",            iso:"2026-04-03", day:true,  url:"https://x.com/intergaze_xyz/status/2039881751170818227",      c:"x",       cat:"NFT/Social"},
-    {n:"Dmail",                iso:"2026-04-02", day:true,  url:"https://x.com/dmailofficial/status/2039749505902694636",      c:"x",       cat:"NFT/Social"},
-    {n:"Leap Wallet",          iso:"2026-04-02", day:true,  url:"https://x.com/leap_wallet/status/2039729267685376026",        c:"x",       cat:"Wallet"},
-    {n:"Fey",                  iso:"2026-04-01", day:true,  url:null,                                                          c:"deleted", cat:"Other"},
-    {n:"Magic Eden Wallet",    iso:"2026-04-01", day:true,  url:"https://help.magiceden.io/",                                  c:"docs",    cat:"Wallet"},
-    {n:"Pixiland",             iso:"2026-04-15", day:false, url:null,                                                          c:"discord", cat:"Gaming"},
-    {n:"Yupp AI",              iso:"2026-03-31", day:true,  url:"https://x.com/pankaj/status/2039010092255969712",             c:"x",       cat:"AI"},
-    {n:"Bit.com",              iso:"2026-03-15", day:false, url:null,                                                          c:"deleted", cat:"Trading/CEX"},
-    {n:"MilkyWay",             iso:"2026-03-26", day:true,  url:"https://x.com/milky_way_zone/status/2037020332775923746",     c:"x",       cat:"L2/Infra"},
-    {n:"Tally",                iso:"2026-03-17", day:true,  url:"https://x.com/tallyxyz/status/2033917127304814802",           c:"x",       cat:"DeFi"},
-    {n:"Blockfills",           iso:"2026-03-16", day:true,  url:"https://x.com/blockfills/status/2033310738865897473",         c:"x",       cat:"Trading/CEX"},
-    {n:"Genome Protocol",      iso:"2026-03-11", day:true,  url:"https://x.com/genome_protocol/status/2031466677020598412",    c:"x",       cat:"Other"},
-    {n:"Datahaven",            iso:"2026-03-04", day:true,  url:null,                                                          c:"deleted", cat:"L2/Infra"},
-    {n:"Angle Protocol",       iso:"2026-03-04", day:true,  url:"https://x.com/angleprotocol/status/2029161525580112263",      c:"x",       cat:"DeFi"},
-    {n:"Step Finance",         iso:"2026-02-24", day:true,  url:"https://x.com/stepfinance_/status/2025986934112145849",       c:"x",       cat:"DeFi"},
-    {n:"Remora Markets",       iso:"2026-02-24", day:true,  url:"https://x.com/remoramarkets/status/2025896960938995937",      c:"x",       cat:"DeFi"},
-    {n:"Parsec",               iso:"2026-02-19", day:true,  url:"https://x.com/parsec_finance/status/2024519983330468049",     c:"x",       cat:"Other"},
-    {n:"Zerolandxyz",          iso:"2026-02-16", day:true,  url:null,                                                          c:"deleted", cat:"Other"},
-    {n:"Polynomial",           iso:"2026-02-13", day:true,  url:"https://x.com/polynomialfi/status/2022344918111494169",       c:"x",       cat:"DeFi"},
-    {n:"NGS",                  iso:"2026-01-28", day:true,  url:"https://x.com/niftygateway/status/2016254238347891112",       c:"x",       cat:"NFT/Social"},
-    {n:"Entropy",              iso:"2026-01-24", day:true,  url:null,                                                          c:"deleted", cat:"Other"},
-    {n:"Slingshot",            iso:"2026-01-21", day:true,  url:"https://x.com/slingshotcrypto/status/2015912783112499513",    c:"x",       cat:"DeFi"},
-    {n:"BitMart",                iso:"2026-07-26", day:true,  url:"https://x.com/BitMartExchange/status/2081197305491845201", c:"x", cat:"Trading/CEX"},
-    {n:"Forma",                  iso:"2026-07-25", day:true,  url:"https://x.com/Formachain/status/2081046187570798955", c:"x", cat:"L2/Infra"},
-    {n:"Poolin",                 iso:"2026-07-22", day:true,  url:"https://www.coindesk.com/markets/2026/07/24/poolin-was-bitcoin-s-biggest-mining-pool-and-now-it-s-filing-for-bankruptcy", c:"news", cat:"Other"},
-    {n:"Hazeflow",               iso:"2026-07-21", day:true,  url:null, c:"x", cat:"Other"},
-    {n:"DeltaDeFi",              iso:"2026-07-15", day:true,  url:"https://x.com/DeltaDeFi/status/2077323188963561716", c:"x", cat:"DeFi"},
-    {n:"Levvy",                  iso:"2026-07-15", day:false, url:"https://forum.cardano.org/t/important-notice-levvy-fi-platform-retirement-please-act-now-to-secure-your-assets/155575", c:"news", cat:"DeFi"},
-    {n:"Offramp.xyz",            iso:"2026-07-15", day:false, url:"https://www.offramp.xyz/blog/were-shutting-down-offramp/", c:"docs", cat:"Other"},
-    {n:"Summer.fi",              iso:"2026-07-15", day:true,  url:"https://blog.summer.fi/sunsetting-summer-fi-and-the-labs-company/", c:"docs", cat:"DeFi"},
-    {n:"Valhalla",               iso:"2026-07-15", day:false, url:"https://www.theblock.co/post/408718/megaeth-sunsets-mega-mafia-accelerator-program-noting-most-successful-apps-left", c:"news", cat:"DeFi"},
-    {n:"EXMO.com",               iso:"2026-07-14", day:true,  url:"https://exmo.com/blog/en/notifications/exmo-com-is-closing-please-initiate-withdrawal-from-your-account/", c:"docs", cat:"Trading/CEX"},
-    {n:"HaHa",                   iso:"2026-07-07", day:true,  url:"https://nulltx.com/haha-wallet-confirms-shutdown-why-5-crypto-wallets-are-folding-in-2026", c:"news", cat:"Wallet"},
-    {n:"Ethereum Follow Protocol",iso:"2026-07-04", day:true,  url:"https://www.cryptopolitan.com/brantly-millegan-leaves-ens-and-winds-down-ethid-org-amid-governance-upheaval/", c:"news", cat:"NFT/Social"},
-    {n:"Exchange Art",           iso:"2026-07-02", day:true,  url:"https://x.com/exchgart/status/2072744267789828222", c:"x", cat:"NFT/Social"},
-    {n:"Oxium",                  iso:"2026-06-25", day:true,  url:"https://x.com/oxiumxyz/status/2070162907145330799", c:"x", cat:"DeFi"},
-    {n:"Strobe Finance",         iso:"2026-06-23", day:true,  url:"https://x.com/StrobeFinance/status/2069501265227428308", c:"x", cat:"DeFi"},
-    {n:"Altura",                 iso:"2026-06-21", day:true,  url:"https://www.theblock.co/post/405477/altura-winds-down-stablecoin-vault", c:"news", cat:"DeFi"},
-    {n:"Felix",                  iso:"2026-06-19", day:true,  url:"https://www.kucoin.com/news/flash/felix-first-hip-3-platform-on-hyperliquid-announces-shutdown", c:"news", cat:"DeFi"},
-    {n:"OpenRank",               iso:"2026-06-16", day:true,  url:"https://x.com/SahilDewan/status/2066587393529098534", c:"x", cat:"L2/Infra"},
-    {n:"Pyra",                   iso:"2026-06-15", day:true,  url:"https://crypto.news/pyra-to-shut-down-after-drift-exploit-derails-recovery-efforts/", c:"news", cat:"Wallet"},
-    {n:"Goldfinch",              iso:"2026-06-12", day:true,  url:"https://gov.goldfinch.finance/t/gip-87-maintenance-mode-of-goldfinch-operations-and-wind-down-goldfinch-prime/2202", c:"docs", cat:"DeFi"},
-    {n:"NFTfi",                  iso:"2026-06-11", day:true,  url:"https://x.com/WuBlockchain/status/2065117212596383908", c:"x", cat:"NFT/Social"},
-    {n:"0xPPL",                  iso:"2026-06-02", day:true,  url:"https://thecoinformer.com/news/balaji-backed-0xppl-shuts-down-after-failing-to-build-crypto-super-app", c:"news", cat:"NFT/Social"},
-    {n:"Pingu Exchange",         iso:"2026-06-01", day:true,  url:"https://x.com/pinguexchange/status/2061487370004766813", c:"x", cat:"Trading/CEX"},
-    {n:"Rova",                   iso:"2026-06-01", day:true,  url:"https://x.com/spenserhuang/status/2061588924875813321", c:"x", cat:"Other"},
-    {n:"ICON",                   iso:"2026-05-25", day:true,  url:"https://www.icon.foundation/blog/2026/final-date-set-for-sodax-migration-icon-network-to-shut-down-end-of-2026", c:"docs", cat:"L2/Infra"},
-    {n:"Ranger",                 iso:"2026-05-14", day:true,  url:"https://x.com/barrett_io/status/2055015245538832540", c:"x", cat:"DeFi"},
-    {n:"Stream Finance",         iso:"2026-05-11", day:true,  url:"https://x.com/StreamDefi/status/2053826155505992169", c:"x", cat:"DeFi"},
-    {n:"DL News",                iso:"2026-05-07", day:true,  url:"https://www.dlnews.com/articles/people-culture/dl-news-is-closing/", c:"docs", cat:"Other"},
-    {n:"Over Protocol",          iso:"2026-04-28", day:true,  url:"https://crypto.news/over-protocols-lights-go-out-leaving-a-decentralized-shell-behind/", c:"news", cat:"L2/Infra"},
-    {n:"Micro3",                 iso:"2026-04-22", day:true,  url:"https://x.com/Micro3io/status/2046946446889398547", c:"x", cat:"NFT/Social"},
-    {n:"HYTOPIA",                iso:"2026-04-15", day:false, url:"https://x.com/hytopia/status/2045244546536366503", c:"x", cat:"Gaming"},
-    {n:"MUD / Lattice",          iso:"2026-04-15", day:true,  url:"https://x.com/latticexyz/status/2044103611072835744", c:"x", cat:"Gaming"},
-    {n:"UX Chain",               iso:"2026-04-01", day:true,  url:"https://x.com/wublockchain12/status/2039182998374113317", c:"x", cat:"L2/Infra"},
-    {n:"Coinflare",              iso:"2026-03-26", day:true,  url:null, c:"x", cat:"Trading/CEX"},
-    {n:"CharmVerse",             iso:"2026-03-25", day:true,  url:"https://x.com/CharmVerse/status/2036766170158674264", c:"x", cat:"Other"},
-    {n:"Colony",                 iso:"2026-02-26", day:true,  url:"https://x.com/Colonylab/status/2027057233629237499", c:"x", cat:"Other"},
-    {n:"WebN Group",             iso:"2026-02-25", day:true,  url:"https://www.coindesk.com/business/2026/02/25/billionaire-alan-howard-s-crypto-incubator-webn-closes-down", c:"news", cat:"Other"},
-    {n:"Catalog",                iso:"2026-02-17", day:true,  url:"https://fin.catalog.works", c:"docs", cat:"NFT/Social"},
-    {n:"ZeroLend",               iso:"2026-02-16", day:true,  url:"https://x.com/zerolendxyz/status/2023402141545791866", c:"x", cat:"DeFi"},
-    {n:"Enclave Markets",        iso:"2026-02-12", day:false, url:"https://www.enclave.market/operations-paused", c:"docs", cat:"Trading/CEX"},
-    {n:"Family",                 iso:"2026-02-03", day:true,  url:"https://avara.xyz/blog/the-future-of-family-wallet", c:"docs", cat:"Wallet"},
-    {n:"GOAT Gaming",            iso:"2026-02-02", day:true,  url:"https://playgoatgaming.substack.com/p/a-farewell-to-goat-gaming", c:"docs", cat:"Gaming"},
-    {n:"StableLab",              iso:"2026-01-29", day:true,  url:"https://x.com/StableLab/status/2016880117587308847", c:"x", cat:"Other"},
-    {n:"Rodeo",                  iso:"2026-01-27", day:true,  url:"https://x.com/saturnial/status/2016212705036939476", c:"x", cat:"NFT/Social"},
-    {n:"The Forgotten Runiverse",iso:"2026-01-27", day:true,  url:"https://x.com/RuniverseGame/status/2015967471161745673", c:"x", cat:"Gaming"},
-    {n:"Bloktopia",              iso:"2026-01-05", day:true,  url:"https://medium.com/@bloktopia/a-final-chapter-for-bloktopia-fd6789e42439", c:"docs", cat:"Gaming"}
+    {n:"Dango",                iso:"2026-07-25", day:true,  url:"https://x.com/dango/status/2080707796144705625",              c:"x",       cat:"DeFi", why:"traction", note:"Perps DEX concluded after 3 months on mainnet there was no viable path to lasting commercial success.", figs:[{"k":"Raised","v":"$3.6M"},{"k":"TVL","v":"$1.77M"}]},
+    {n:"BitMEX",               iso:"2026-07-23", day:true,  url:"https://x.com/bitmex/status/2080201602456301580",             c:"x",       cat:"Trading/CEX", why:"voluntary", note:"Owner HDR wound the exchange down after a strategic review of business and market conditions.", figs:[{"k":"Peak derivatives share","v":"~57%"},{"k":"Peak annual volume","v":"$1T+"}]},
+    {n:"ODOS",                 iso:"2026-07-23", day:true,  url:"https://x.com/odosprotocol/status/2080337624922018014",       c:"x",       cat:"DeFi", why:"voluntary", note:"The operating company wound down after much consideration; no reason was given for the closure.", figs:[{"k":"Cumulative volume","v":"$102.5B"},{"k":"Protocol revenue","v":"$8.6M"}]},
+    {n:"Movement Labs",        iso:"2026-07-22", day:true,  url:"https://x.com/wublockchain/status/2079641014067925232",       c:"x",       cat:"L2/Infra", why:"insolvency", note:"Filed Chapter 11 in Delaware after the MOVE token scandal and near-zero chain revenue.", figs:[{"k":"Raised","v":"$141.4M"},{"k":"Assets","v":"$100K-$500K"}]},
+    {n:"Secondfi",             iso:"2026-07-22", day:true,  url:"https://x.com/secondfiapp/status/2079788851204329886",        c:"x",       cat:"DeFi", why:"exploit", note:"A signing flaw let attackers drain ~$2.6M in ADA from 374 wallets; SecondFi and Yoroi wind down.", figs:[{"k":"Loss","v":"$2.6M (16.1M ADA)"},{"k":"Wallets drained","v":"374"}]},
+    {n:"Xenea",                iso:"2026-07-13", day:true,  url:"https://x.com/xenea_io/status/2076629402473885821",           c:"x",       cat:"L2/Infra", why:"funding", note:"Said it faces significant difficulty continuing operations; site and testnet go dark, legal process to follow."},
+    {n:"AscendEX",             iso:"2026-07-11", day:true,  url:"https://x.com/ascendex_/status/2075756398877814940",          c:"x",       cat:"Trading/CEX", why:"funding", note:"A promised liquidity deal fell through and it lacked MiCA authorization; reserves were near empty."},
+    {n:"Zapper",               iso:"2026-07-09", day:true,  url:"https://x.com/sebaudet26/status/2074918469376856150",         c:"x",       cat:"DeFi", why:"voluntary", note:"CEO said after evaluating options an orderly wind-down was the best course; no cause given.", figs:[{"k":"Peak MAU","v":"2M"},{"k":"Peak volume","v":"$13B"},{"k":"Raised","v":"$16.5M"}]},
+    {n:"Ctrl Wallet",          iso:"2026-07-07", day:true,  url:"https://x.com/ctrl_wallet/status/2074310251378270343",        c:"x",       cat:"Wallet", why:"exploit", note:"A June 2026 exploit hit Cardano-linked hot wallets; the team decommissioned rather than rebuild."},
+    {n:"Loopring",             iso:"2026-07-03", day:true,  url:"https://x.com/loopringorg/status/2072989477405835340",        c:"x",       cat:"L2/Infra", why:"traction", note:"Ethereum's first zkRollup DEX closed citing weak user adoption and being outpaced by zkEVMs.", figs:[{"k":"TVL at close","v":"~$8M"},{"k":"Peak TVL","v":"$760M"}]},
+    {n:"Polygon zkEVM",        iso:"2026-07-01", day:true,  url:"https://forum.polygon.technology/",                           c:"docs",    cat:"L2/Infra", why:"traction", note:"Sunset after zkEVM failed to differentiate; Polygon said it set aggressive goals and fell short.", figs:[{"k":"Paid for Hermez","v":"$250M"},{"k":"Annual loss","v":"$1M+"}]},
+    {n:"Sophon",               iso:"2026-06-26", day:true,  url:"https://x.com/sophon/status/2070192257295335800",             c:"x",       cat:"L2/Infra", why:"traction", note:"Killed its L2 (under 200 daily users, millions in yearly costs) to build consumer apps on Base.", figs:[{"k":"Raised","v":"$60M"},{"k":"Daily users","v":"under 200"},{"k":"Chain cost","v":"$3.4M/yr"}]},
+    {n:"ionic",                iso:"2026-06-18", day:true,  url:"https://x.com/ionicmoney/status/2067518110635016213",         c:"x",       cat:"DeFi", why:"exploit", note:"Never recovered from a 2024 lending-pool hack; the team called the damage insurmountable.", figs:[{"k":"Loss","v":"$8.6M"}]},
+    {n:"Soundness",            iso:"2026-06-18", day:true,  url:"https://x.com/soundnesslabs/status/2067492901886796006",      c:"x",       cat:"L2/Infra", why:"market", note:"Shipped a working post-quantum protection layer but said the tech works while the market is not ready."},
+    {n:"Swell",                iso:"2026-06-17", day:true,  url:"https://x.com/swellnetworkio/status/2067031459731570952",     c:"x",       cat:"DeFi", why:"voluntary", note:"Sunset its Swellchain L2 to concentrate on Faro; restaking matured slower than expected."},
+    {n:"Powerloom",            iso:"2026-06-16", day:true,  url:"https://x.com/powerloomorg/status/2066566700842221818",       c:"x",       cat:"L2/Infra", why:"funding", note:"Founders self-funded operations unpaid for 8+ months and said resources and energy were exhausted."},
+    {n:"Satori",               iso:"2026-06-16", day:true,  url:"https://x.com/satorifinance/status/2066909927973740797",      c:"x",       cat:"DeFi", why:"market", note:"Said prolonged unfavorable market conditions left revenue too low to sustain operations.", figs:[{"k":"Perp volume","v":"$134B"},{"k":"Raised","v":"$10M"},{"k":"TVL at close","v":"$1.2M"}]},
+    {n:"Ventuals",             iso:"2026-06-15", day:true,  url:"https://x.com/ventuals/status/2066517389169025294",           c:"x",       cat:"DeFi", why:"acquired", note:"Not shut for losses: the whole team folded into an undisclosed Hyperliquid-ecosystem project.", figs:[{"k":"Volume","v":"$650M"},{"k":"Traders","v":"11,000"}]},
+    {n:"Fishing Frenzy",       iso:"2026-06-15", day:true,  url:"https://x.com/fishingfrenzyco/status/2066376668357566509",    c:"x",       cat:"Gaming", why:"traction", note:"Studio Uncharted closed it, saying it could not find product-market-business fit in crypto gaming.", figs:[{"k":"Paid to community","v":"$62,845"}]},
+    {n:"Pudgy Party",          iso:"2026-06-13", day:true,  url:"https://x.com/playpudgyparty/status/2065555998031384917",     c:"x",       cat:"Gaming", why:"traction", note:"Wound down to refocus on Pudgy World; the CEO said only 200-300 players were still active.", figs:[{"k":"Downloads","v":"1M+"},{"k":"Active players","v":"200-300"}]},
+    {n:"Botanix",              iso:"2026-06-10", day:true,  url:"https://x.com/botanix/status/2064420116578590941",            c:"x",       cat:"L2/Infra", why:"traction", note:"It did not work: users never wanted Bitcoin-native DeFi, so the tokenless L2 wound down.", figs:[{"k":"TVL at close","v":"$119,500"},{"k":"Raised","v":"$14.4M"}]},
+    {n:"Hyli",                 iso:"2026-06-10", day:true,  url:"https://x.com/hyli_org/status/2064678967035224555",           c:"x",       cat:"L2/Infra", why:"traction", note:"Team said ZK never gained the traction they hoped for, so they saw no path to mainnet.", figs:[{"k":"Raised","v":"$3.4M"}]},
+    {n:"Radiant Capital",      iso:"2026-06-01", day:true,  url:"https://x.com/rdntcapital/status/2061457987441447041",        c:"x",       cat:"DeFi", why:"exploit", note:"18 months after the ~$50M 2024 hack: no fund recovery, no new capital, no runway to keep operating.", figs:[{"k":"Exploit loss","v":"$50M"},{"k":"TVL after hack","v":"$5M (from $386M)"}]},
+    {n:"Zero Network",         iso:"2026-05-22", day:true,  url:"https://x.com/zerodotnetwork/status/2057529610628128917",     c:"x",       cat:"L2/Infra", why:"voluntary", note:"Zerion wound down the ZERO L2 to double down on its core wallet and API products."},
+    {n:"Everclear",            iso:"2026-05-21", day:true,  url:"https://x.com/everclearorg/status/2057488000003477886",       c:"x",       cat:"L2/Infra", why:"traction", note:"Hit $500M monthly volume but never monetized it; runway ran out before B2B2C partners went live.", figs:[{"k":"Peak volume","v":"$500M/month"},{"k":"CLEAR price drop","v":"-48%"}]},
+    {n:"Syndicate",            iso:"2026-05-21", day:true,  url:"https://x.com/syndicateio/status/2057291537860706672",        c:"x",       cat:"L2/Infra", why:"market", note:"Rollup market shrank dramatically and EVM rollups stopped being the standard; bridge hack ruled unrelated."},
+    {n:"Fantasy",              iso:"2026-05-20", day:true,  url:"https://x.com/fantasy_top_/status/2057120720799383935",       c:"x",       cat:"Gaming", why:"traction", note:"Team concluded the trading-card model was fundamentally mismatched with what crypto users want.", figs:[{"k":"Paid to players","v":"$20M"},{"k":"Paid to influencers","v":"$3.2M"}]},
+    {n:"Legend",               iso:"2026-05-13", day:true,  url:"https://x.com/jaysonhobby/status/2054253835003347306",        c:"x",       cat:"Other", why:"traction", note:"DeFi super app wound down after two years, never reaching the scale to sustain the business.", figs:[{"k":"Raised","v":"$15M"}]},
+    {n:"Phi",                  iso:"2026-05-04", day:true,  url:"https://x.com/phi_xyz/status/2051182324080083227",            c:"x",       cat:"NFT/Social", why:"funding", note:"Closed after January layoffs and failed pivots left funding insufficient to keep running."},
+    {n:"Carrot",               iso:"2026-05-01", day:true,  url:"https://x.com/deficarrot/status/2049907092664762624",         c:"x",       cat:"DeFi", why:"dependency", note:"Lost half its TVL in the $285M Drift exploit it relied on and could not stay viable.", figs:[{"k":"Loss","v":"~$8M"},{"k":"TVL","v":"$28M to $2M"}]},
+    {n:"Genso Online",         iso:"2026-04-30", day:true,  url:null,                                                          c:"deleted", cat:"Gaming", why:"traction", note:"Servers closed after the team disclosed monthly costs far exceeding game revenue.", figs:[{"k":"Monthly cost","v":"JPY 10M"},{"k":"Monthly revenue","v":"JPY 2M"}]},
+    {n:"Luckio",               iso:"2026-04-24", day:true,  url:"https://x.com/luckio/status/2047642254681231545",             c:"x",       cat:"Other", why:"traction", note:"Team gave no reason; coverage points to daily revenue collapsing ~90% while influencer spend stayed high.", figs:[{"k":"Lifetime wagers","v":"$1.2B"},{"k":"Bets placed","v":"286M"}]},
+    {n:"Beets",                iso:"2026-04-17", day:true,  url:"https://x.com/beets_fi/status/2045030774877966595",           c:"x",       cat:"DeFi", why:"dependency", note:"RedStone sunset the stS oracle feeds, so Silo deprecated its three stS lending markets."},
+    {n:"Mint Blockchain",      iso:"2026-04-17", day:true,  url:"https://x.com/mint_blockchain/status/2044980026819617147",    c:"x",       cat:"L2/Infra", why:"unknown"},
+    {n:"Pixel Heroes Adventure",iso:"2026-04-17",day:true,  url:null,                                                          c:"discord", cat:"Gaming", why:"unknown"},
+    {n:"XOCIETY",              iso:"2026-04-16", day:true,  url:"https://x.com/xocietyofficial/status/2044699481690849653",    c:"x",       cat:"Gaming", why:"market", note:"Paused live service citing market conditions and ongoing challenges across Web3 gaming.", figs:[{"k":"Raised","v":"$7.5M pre-Series A"}]},
+    {n:"77-Bit",               iso:"2026-04-16", day:true,  url:"https://x.com/the77bit/status/2044522987886440940",           c:"x",       cat:"Gaming", why:"funding", note:"Web3 MMORPG paused indefinitely, out of money, with infrastructure it could not afford to rebuild.", figs:[{"k":"Raised","v":"~$1.75M"}]},
+    {n:"Opulous",              iso:"2026-04-15", day:true,  url:"https://x.com/opulousapp/status/2044409892237107327",         c:"x",       cat:"NFT/Social", why:"exploit", note:"A Messina bridge exploit released hundreds of millions of OPUL, collapsing price and market-making reserves."},
+    {n:"Foundation",           iso:"2026-04-15", day:true,  url:null,                                                          c:"deleted", cat:"NFT/Social", why:"market", note:"A rescue sale to BlackDove collapsed and no other buyer was worth pursuing, so it closed for good.", figs:[{"k":"Primary sales","v":"$230M+"}]},
+    {n:"Megaphone",            iso:"2026-04-12", day:true,  url:"https://x.com/megaphone_hq/status/2043224242054217793",       c:"x",       cat:"NFT/Social", why:"acquired", note:"Platform deactivated and data handed to partners as founders joined insurtech Fulcrum.", figs:[{"k":"Users","v":"5M+"}]},
+    {n:"Seamless Protocol",    iso:"2026-04-08", day:true,  url:"https://x.com/seamlessfi/status/2041572728239747558",         c:"x",       cat:"DeFi", why:"traction", note:"Leverage Tokens never found true product-market fit and the team saw no path to it in the current design."},
+    {n:"Intergaze",            iso:"2026-04-03", day:true,  url:"https://x.com/intergaze_xyz/status/2039881751170818227",      c:"x",       cat:"NFT/Social", why:"traction", note:"Rollup infrastructure cost was no longer justified by current usage; NFTs migrated to Stargaze."},
+    {n:"Dmail",                iso:"2026-04-02", day:true,  url:"https://x.com/dmailofficial/status/2039749505902694636",      c:"x",       cat:"NFT/Social", why:"traction", note:"Web3 email never commercialized; decentralized infra costs ballooned and core team members left.", figs:[{"k":"Token drop","v":"-57%"}]},
+    {n:"Leap Wallet",          iso:"2026-04-02", day:true,  url:"https://x.com/leap_wallet/status/2039729267685376026",        c:"x",       cat:"Wallet", why:"voluntary", note:"Sunset the wallet suite after careful consideration; no reason for the decision was given.", figs:[{"k":"Chains supported","v":"100+"}]},
+    {n:"Fey",                  iso:"2026-04-01", day:true,  url:null,                                                          c:"deleted", cat:"Other", why:"unknown"},
+    {n:"Magic Eden Wallet",    iso:"2026-04-01", day:true,  url:"https://help.magiceden.io/",                                  c:"docs",    cat:"Wallet", why:"traction", note:"Multi-chain wallet sunset as Magic Eden refocused on Solana; non-Solana products burned most of its costs.", figs:[{"k":"Cost share","v":"80% of costs, 20% of revenue"}]},
+    {n:"Pixiland",             iso:"2026-04-15", day:false, url:null,                                                          c:"discord", cat:"Gaming", why:"market", note:"Dropped Web3 citing market volatility, regulatory uncertainty and limited remaining resources."},
+    {n:"Yupp AI",              iso:"2026-03-31", day:true,  url:"https://x.com/pankaj/status/2039010092255969712",             c:"x",       cat:"AI", why:"traction", note:"Never found product-market fit as AI shifted from chatbots to agentic systems.", figs:[{"k":"Raised","v":"$33M"},{"k":"Users","v":"1.3M"}]},
+    {n:"Bit.com",              iso:"2026-03-15", day:false, url:null,                                                          c:"deleted", cat:"Trading/CEX", why:"voluntary", note:"Matrixport-backed exchange wound down in phases under a business restructuring, migrating users."},
+    {n:"MilkyWay",             iso:"2026-03-26", day:true,  url:"https://x.com/milky_way_zone/status/2037020332775923746",     c:"x",       cat:"L2/Infra", why:"traction", note:"Celestia DeFi and restaking demand never materialized; runway ran out before the card product found PMF.", figs:[{"k":"Restaking TVL","v":"$250M"}]},
+    {n:"Tally",                iso:"2026-03-17", day:true,  url:"https://x.com/tallyxyz/status/2033917127304814802",           c:"x",       cat:"DeFi", why:"traction", note:"Founder said there isn't a venture-backed business in governance tooling for DAOs, at least not yet.", figs:[{"k":"Users","v":"1M+"},{"k":"Value secured","v":"$80B at peak"}]},
+    {n:"Blockfills",           iso:"2026-03-16", day:true,  url:"https://x.com/blockfills/status/2033310738865897473",         c:"x",       cat:"Trading/CEX", why:"insolvency", note:"Filed Chapter 11 after the Feb 2026 crash, counterparty losses and frozen client withdrawals.", figs:[{"k":"Liabilities","v":"$100M-$500M"},{"k":"Losses","v":"~$75-80M"}]},
+    {n:"Genome Protocol",      iso:"2026-03-11", day:true,  url:"https://x.com/genome_protocol/status/2031466677020598412",    c:"x",       cat:"Other", why:"funding", note:"Funding and partnership talks failed as InfoFi collapsed and X API changes killed its Splice platform.", figs:[{"k":"Raised","v":"~$600K"},{"k":"Total deployed","v":"~$1M"}]},
+    {n:"Datahaven",            iso:"2026-03-04", day:true,  url:null,                                                          c:"deleted", cat:"L2/Infra", why:"funding", note:"Exhausted funding, partnerships and alt token structures; saw no responsible path to TGE."},
+    {n:"Angle Protocol",       iso:"2026-03-04", day:true,  url:"https://x.com/angleprotocol/status/2029161525580112263",      c:"x",       cat:"DeFi", why:"traction", note:"EURA and USDA wound down by governance vote after waning interest; redemptions run to March 2027.", figs:[{"k":"EURA market cap","v":"under $4M"}]},
+    {n:"Step Finance",         iso:"2026-02-24", day:true,  url:"https://x.com/stepfinance_/status/2025986934112145849",       c:"x",       cat:"DeFi", why:"exploit", note:"Shut after a January treasury hack; financing and acquisition talks produced no viable outcome.", figs:[{"k":"Drained","v":"$40M"}]},
+    {n:"Remora Markets",       iso:"2026-02-24", day:true,  url:"https://x.com/remoramarkets/status/2025896960938995937",      c:"x",       cat:"DeFi", why:"exploit", note:"Parent Step Finance lost $30M to a January hack; no financing or buyer emerged, so all ops ended.", figs:[{"k":"Loss","v":"$30M"}]},
+    {n:"Parsec",               iso:"2026-02-19", day:true,  url:"https://x.com/parsec_finance/status/2024519983330468049",     c:"x",       cat:"Other", why:"market", note:"CEO said DeFi spot-lending leverage never returned post-FTX, leaving its analytics niche gone."},
+    {n:"Polynomial",           iso:"2026-02-13", day:true,  url:"https://x.com/polynomialfi/status/2022344918111494169",       c:"x",       cat:"DeFi", why:"traction", note:"TVL drained from its $8M peak as traders chose deeper venues; shut down instead of launching a token.", figs:[{"k":"Peak TVL","v":"$8M"},{"k":"Volume","v":"$4B+"}]},
+    {n:"NGS",                  iso:"2026-01-28", day:true,  url:"https://x.com/niftygateway/status/2016254238347891112",       c:"x",       cat:"NFT/Social", why:"market", note:"Gemini closed Nifty Gateway as NFT volumes collapsed, refocusing on a single crypto super app.", figs:[{"k":"Peak sales","v":"$300M+"}]},
+    {n:"Entropy",              iso:"2026-01-24", day:true,  url:null,                                                          c:"deleted", cat:"Other", why:"voluntary", note:"Founder concluded the custody business was not venture-scale after several pivots and returned capital.", figs:[{"k":"Raised","v":"$27M"},{"k":"a16z seed","v":"$25M"}]},
+    {n:"Slingshot",            iso:"2026-01-21", day:true,  url:"https://x.com/slingshotcrypto/status/2015912783112499513",    c:"x",       cat:"DeFi", why:"acquired", note:"Standalone app sunset after Magic Eden's acquisition; the tech moved into ME Wallet.", figs:[{"k":"Users","v":"~1M"}]},
+    {n:"BitMart",                iso:"2026-07-26", day:true,  url:"https://x.com/BitMartExchange/status/2081197305491845201", c:"x", cat:"Trading/CEX", why:"voluntary", note:"Cited operating conditions, market environment and future strategic direction, with no further detail.", figs:[{"k":"BMX drop","v":"-58% in a day"}]},
+    {n:"Forma",                  iso:"2026-07-25", day:true,  url:"https://x.com/Formachain/status/2081046187570798955", c:"x", cat:"L2/Infra", why:"dependency", note:"Chain became unsustainable after the upstream Astria stack shut down; NFTs migrate to Ethereum mainnet."},
+    {n:"Poolin",                 iso:"2026-07-22", day:true,  url:"https://www.coindesk.com/markets/2026/07/24/poolin-was-bitcoin-s-biggest-mining-pool-and-now-it-s-filing-for-bankruptcy", c:"news", cat:"Other", why:"insolvency", note:"Filed Chapter 11 after years of frozen withdrawals and a stalled Texas mining expansion.", figs:[{"k":"Debts","v":"~$173M"},{"k":"IOUs issued","v":"$163.7M to 11,700 users"}]},
+    {n:"Hazeflow",               iso:"2026-07-21", day:true,  url:null, c:"x", cat:"Other", why:"unknown"},
+    {n:"DeltaDeFi",              iso:"2026-07-15", day:true,  url:"https://x.com/DeltaDeFi/status/2077323188963561716", c:"x", cat:"DeFi", why:"funding", note:"Paused operations due to lack of operating runway, suspending development and returning user funds."},
+    {n:"Levvy",                  iso:"2026-07-15", day:false, url:"https://forum.cardano.org/t/important-notice-levvy-fi-platform-retirement-please-act-now-to-secure-your-assets/155575", c:"news", cat:"DeFi", why:"voluntary", note:"Retired the platform with no reason given, months after failing to find a buyer for V2 and V3.", figs:[{"k":"Spent on V3","v":"$247K"}]},
+    {n:"Offramp.xyz",            iso:"2026-07-15", day:false, url:"https://www.offramp.xyz/blog/were-shutting-down-offramp/", c:"docs", cat:"Other", why:"voluntary", note:"Announced a phased wind-down through Dec 2026 to let users withdraw, giving no public reason."},
+    {n:"Summer.fi",              iso:"2026-07-15", day:true,  url:"https://blog.summer.fi/sunsetting-summer-fi-and-the-labs-company/", c:"docs", cat:"DeFi", why:"exploit", note:"A $6.04M exploit of Lazy Summer Protocol drained the reserves needed to recover, forcing closure.", figs:[{"k":"Loss","v":"$6.04M"},{"k":"Peak TVL","v":"$200M"},{"k":"Users","v":"50,000+"}]},
+    {n:"Valhalla",               iso:"2026-07-15", day:false, url:"https://www.theblock.co/post/408718/megaeth-sunsets-mega-mafia-accelerator-program-noting-most-successful-apps-left", c:"news", cat:"DeFi", why:"unknown"},
+    {n:"EXMO.com",               iso:"2026-07-14", day:true,  url:"https://exmo.com/blog/en/notifications/exmo-com-is-closing-please-initiate-withdrawal-from-your-account/", c:"docs", cat:"Trading/CEX", why:"regulatory", note:"UK sanctions on group entities left operations almost completely paralyzed and froze user assets.", figs:[{"k":"Obligations uncovered","v":"29.4%"}]},
+    {n:"HaHa",                   iso:"2026-07-07", day:true,  url:"https://nulltx.com/haha-wallet-confirms-shutdown-why-5-crypto-wallets-are-folding-in-2026", c:"news", cat:"Wallet", why:"traction", note:"Folded despite real usage; the team saw no path to the venture scale it had set out to reach.", figs:[{"k":"Signups","v":"2.5M"},{"k":"Peak DAU","v":"90K"},{"k":"Peak revenue","v":"$500/day"}]},
+    {n:"Ethereum Follow Protocol",iso:"2026-07-04", day:true,  url:"https://www.cryptopolitan.com/brantly-millegan-leaves-ens-and-winds-down-ethid-org-amid-governance-upheaval/", c:"news", cat:"NFT/Social", why:"voluntary", note:"Brantly Millegan left ENS amid governance upheaval and wound down ethid.org, which hosted EFP.", figs:[{"k":"Lists created","v":"55,000+"}]},
+    {n:"Exchange Art",           iso:"2026-07-02", day:true,  url:"https://x.com/exchgart/status/2072744267789828222", c:"x", cat:"NFT/Social", why:"market", note:"Found no fiscally viable path forward during the extended downturn in onchain art activity."},
+    {n:"Oxium",                  iso:"2026-06-25", day:true,  url:"https://x.com/oxiumxyz/status/2070162907145330799", c:"x", cat:"DeFi", why:"traction", note:"Revenue fell too low to cover costs as Sei trading dried up; TVL ended around $2.3K.", figs:[{"k":"TVL at close","v":"$2,355"},{"k":"Peak TVL","v":"$3M+"}]},
+    {n:"Strobe Finance",         iso:"2026-06-23", day:true,  url:"https://x.com/StrobeFinance/status/2069501265227428308", c:"x", cat:"DeFi", why:"funding", note:"Could not secure follow-on grants, angel or VC funding; fees stopped covering monthly running costs."},
+    {n:"Altura",                 iso:"2026-06-21", day:true,  url:"https://www.theblock.co/post/405477/altura-winds-down-stablecoin-vault", c:"news", cat:"DeFi", why:"market", note:"A run of redemptions from contagion fear after Main Street's msUSD depeg forced the vault to close.", figs:[{"k":"Peak TVL","v":"$39M"},{"k":"Redemptions in 24h","v":"8.5M USDT"}]},
+    {n:"Felix",                  iso:"2026-06-19", day:true,  url:"https://www.kucoin.com/news/flash/felix-first-hip-3-platform-on-hyperliquid-announces-shutdown", c:"news", cat:"DeFi", why:"traction", note:"Founder blamed a late start and picking USDH; Trade.XYZ took over 90% of HIP-3 volume.", figs:[{"k":"Volume","v":"$3B"}]},
+    {n:"OpenRank",               iso:"2026-06-16", day:true,  url:"https://x.com/SahilDewan/status/2066587393529098534", c:"x", cat:"L2/Infra", why:"traction", note:"Karma3 Labs never found a compounding growth business model; returned remaining capital to investors.", figs:[{"k":"Raised","v":"$4.5M seed"},{"k":"Users scored","v":"10M+"}]},
+    {n:"Pyra",                   iso:"2026-06-15", day:true,  url:"https://crypto.news/pyra-to-shut-down-after-drift-exploit-derails-recovery-efforts/", c:"news", cat:"Wallet", why:"exploit", note:"Lost its funds in the Drift hack and found no sustainable path forward after months of recovery attempts.", figs:[{"k":"Drift exploit","v":"~$285M"}]},
+    {n:"Goldfinch",              iso:"2026-06-12", day:true,  url:"https://gov.goldfinch.finance/t/gip-87-maintenance-mode-of-goldfinch-operations-and-wind-down-goldfinch-prime/2202", c:"docs", cat:"DeFi", why:"traction", note:"Prime never reached the adoption needed to justify further investment; legacy pools also underperformed.", figs:[{"k":"Lifetime loans","v":"~$100M"}]},
+    {n:"NFTfi",                  iso:"2026-06-11", day:true,  url:"https://x.com/WuBlockchain/status/2065117212596383908", c:"x", cat:"NFT/Social", why:"market", note:"The shrinking NFT market left too little revenue to cover operating costs after six years.", figs:[{"k":"Loan volume","v":"$737M"},{"k":"Loans","v":"82,000+"}]},
+    {n:"0xPPL",                  iso:"2026-06-02", day:true,  url:"https://thecoinformer.com/news/balaji-backed-0xppl-shuts-down-after-failing-to-build-crypto-super-app", c:"news", cat:"NFT/Social", why:"traction", note:"Founder: the market they bet on for a crypto super app never arrived on their timeline."},
+    {n:"Pingu Exchange",         iso:"2026-06-01", day:true,  url:"https://x.com/pinguexchange/status/2061487370004766813", c:"x", cat:"Trading/CEX", why:"funding", note:"The Monad bet never transformed; treasury exhausted, team unpaid since February, so it returned ETH to holders.", figs:[{"k":"Lifetime volume","v":"$2.4B"},{"k":"Monad volume","v":"$80M in 6 months"}]},
+    {n:"Rova",                   iso:"2026-06-01", day:true,  url:"https://x.com/spenserhuang/status/2061588924875813321", c:"x", cat:"Other", why:"traction", note:"Not enough traction from the project side, and users showed up for incentives, not the products."},
+    {n:"ICON",                   iso:"2026-05-25", day:true,  url:"https://www.icon.foundation/blog/2026/final-date-set-for-sodax-migration-icon-network-to-shut-down-end-of-2026", c:"docs", cat:"L2/Infra", why:"voluntary", note:"Sunsetting its L1 by Dec 31 2026 to consolidate into SODAX, with ICX holders migrating to SODA.", figs:[{"k":"Networks in SODAX","v":"18+"}]},
+    {n:"Ranger",                 iso:"2026-05-14", day:true,  url:"https://x.com/barrett_io/status/2055015245538832540", c:"x", cat:"DeFi", why:"funding", note:"Cash ran out as the MetaDAO raise slipped and was returned; the Drift exploit finished off what was left.", figs:[{"k":"Treasury liquidated","v":"$5.05M USDC"},{"k":"Runway left","v":"2 months"}]},
+    {n:"Stream Finance",         iso:"2026-05-11", day:true,  url:"https://x.com/StreamDefi/status/2053826155505992169", c:"x", cat:"DeFi", why:"insolvency", note:"After a $93M loss and xUSD depeg, it began liquidating assets for customers and creditors.", figs:[{"k":"Loss","v":"$93M"},{"k":"Owed to lenders","v":"$285M"},{"k":"xUSD drop","v":"77%"}]},
+    {n:"DL News",                iso:"2026-05-07", day:true,  url:"https://www.dlnews.com/articles/people-culture/dl-news-is-closing/", c:"docs", cat:"Other", why:"market", note:"Crypto and tech media traffic contracted severely as AI collapsed search distribution.", figs:[{"k":"Research revenue growth","v":"+270% in 2025"}]},
+    {n:"Over Protocol",          iso:"2026-04-28", day:true,  url:"https://crypto.news/over-protocols-lights-go-out-leaving-a-decentralized-shell-behind/", c:"news", cat:"L2/Infra", why:"funding", note:"The foundation killed all infrastructure at once, citing insurmountable financial constraints."},
+    {n:"Micro3",                 iso:"2026-04-22", day:true,  url:"https://x.com/Micro3io/status/2046946446889398547", c:"x", cat:"NFT/Social", why:"market", note:"Cited difficulty maintaining a secure system amid shifting market conditions; all products go offline."},
+    {n:"HYTOPIA",                iso:"2026-04-15", day:false, url:"https://x.com/hytopia/status/2045244546536366503", c:"x", cat:"Gaming", why:"funding", note:"Paused everything while awaiting a large IRS tax refund, unable to cover operating costs."},
+    {n:"MUD / Lattice",          iso:"2026-04-15", day:true,  url:"https://x.com/latticexyz/status/2044103611072835744", c:"x", cat:"Gaming", why:"funding", note:"Never became a sustainable business; runway shrank from early 2025 and the team declined to raise VC."},
+    {n:"UX Chain",               iso:"2026-04-01", day:true,  url:"https://x.com/wublockchain12/status/2039182998374113317", c:"x", cat:"L2/Infra", why:"unknown"},
+    {n:"Coinflare",              iso:"2026-03-26", day:true,  url:null, c:"x", cat:"Trading/CEX", why:"voluntary", note:"Wound down with funds withdrawable to May 7, giving no reason; it had earlier lost its Seychelles license bid."},
+    {n:"CharmVerse",             iso:"2026-03-25", day:true,  url:"https://x.com/CharmVerse/status/2036766170158674264", c:"x", cat:"Other", why:"traction", note:"Said the DAO and grants space was too small for a venture-scale outcome and never reached profitability."},
+    {n:"Colony",                 iso:"2026-02-26", day:true,  url:"https://x.com/Colonylab/status/2027057233629237499", c:"x", cat:"Other", why:"market", note:"Cited weakening Avalanche ecosystem growth and shrinking funding and project inflows."},
+    {n:"WebN Group",             iso:"2026-02-25", day:true,  url:"https://www.coindesk.com/business/2026/02/25/billionaire-alan-howard-s-crypto-incubator-webn-closes-down", c:"news", cat:"Other", why:"voluntary", note:"Alan Howard's crypto incubator closed having completed its mission; staff moved to Brevan Howard."},
+    {n:"Catalog",                iso:"2026-02-17", day:true,  url:"https://fin.catalog.works", c:"docs", cat:"NFT/Social", why:"voluntary", note:"Founders wound it down at what they called its natural completion point after five years.", figs:[{"k":"Paid to artists","v":"$3M+"}]},
+    {n:"ZeroLend",               iso:"2026-02-16", day:true,  url:"https://x.com/zerolendxyz/status/2023402141545791866", c:"x", cat:"DeFi", why:"traction", note:"No longer sustainable after a 98% TVL collapse, illiquid chains and oracle providers pulling out.", figs:[{"k":"TVL at close","v":"$6.6M"},{"k":"Peak TVL","v":"$359M"}]},
+    {n:"Enclave Markets",        iso:"2026-02-12", day:false, url:"https://www.enclave.market/operations-paused", c:"docs", cat:"Trading/CEX", why:"unknown"},
+    {n:"Family",                 iso:"2026-02-03", day:true,  url:"https://avara.xyz/blog/the-future-of-family-wallet", c:"docs", cat:"Wallet", why:"voluntary", note:"Aave retired the Avara brand and Family wallet to go all-in on purpose-built DeFi apps like savings."},
+    {n:"GOAT Gaming",            iso:"2026-02-02", day:true,  url:"https://playgoatgaming.substack.com/p/a-farewell-to-goat-gaming", c:"docs", cat:"Gaming", why:"traction", note:"Never found sustainable product-market fit; the numbers just weren't there."},
+    {n:"StableLab",              iso:"2026-01-29", day:true,  url:"https://x.com/StableLab/status/2016880117587308847", c:"x", cat:"Other", why:"voluntary", note:"The DAO governance firm called it a difficult decision to wind down, without naming a specific cause.", figs:[{"k":"Governance votes cast","v":"4,000+"}]},
+    {n:"Rodeo",                  iso:"2026-01-27", day:true,  url:"https://x.com/saturnial/status/2016212705036939476", c:"x", cat:"NFT/Social", why:"traction", note:"Resonated with a committed community but never reached the scale needed to be sustainable."},
+    {n:"The Forgotten Runiverse",iso:"2026-01-27", day:true,  url:"https://x.com/RuniverseGame/status/2015967471161745673", c:"x", cat:"Gaming", why:"funding", note:"Team said it no longer made sense financially to keep the game running live."},
+    {n:"Bloktopia",              iso:"2026-01-05", day:true,  url:"https://medium.com/@bloktopia/a-final-chapter-for-bloktopia-fd6789e42439", c:"docs", cat:"Gaming", why:"traction", note:"Without sustained user demand there was no justification to keep operating as the metaverse narrative died.", figs:[{"k":"BLOK peak","v":"$0.17 (2021)"}]}
   ];
 
   var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var CLOSURE_LABEL = { x:"X announcement", discord:"Discord", docs:"Blog / forum / docs", news:"Press coverage", deleted:"Account deleted" };
   var CLOSURE_ORDER = ["x","docs","news","deleted","discord"];
+  var WHY_LABEL = {
+    funding:"Ran out of funding", exploit:"Exploit / hack", traction:"No traction",
+    market:"Market contraction", regulatory:"Regulatory / sanctions",
+    insolvency:"Insolvency / bankruptcy", acquired:"Acquired / absorbed",
+    dependency:"Dependency shut down", voluntary:"Wound down by choice", unknown:"Not reported"
+  };
+  var WHY_SHORT = {
+    funding:"Funding", exploit:"Exploit", traction:"No traction", market:"Market",
+    regulatory:"Regulatory", insolvency:"Insolvency", acquired:"Acquired",
+    dependency:"Dependency", voluntary:"By choice", unknown:"Not reported"
+  };
+  var WHY_ORDER = ["traction","voluntary","funding","market","exploit","insolvency","dependency","acquired","regulatory","unknown"];
+  var WHY_HEX = { funding:"#d98c2b", exploit:"#d1566f", traction:"#8c93a1", market:"#6f9bd1",
+    regulatory:"#b06fd1", insolvency:"#c0455c", acquired:"#4fae9b", dependency:"#c9a227",
+    voluntary:"#7f9c6d", unknown:"#5c6672" };
 
   // active months in the data (Jan..Jul)
   var monthIdx = function (d) { return parseInt(d.iso.slice(5,7),10) - 1; };
@@ -688,11 +772,12 @@
 
   // ---------- Derived stats ----------
   var byMonth = {}; activeMonths.forEach(function (m){ byMonth[m]=0; });
-  var byClosure = {}; var byCat = {};
+  var byClosure = {}; var byCat = {}; var byWhy = {};
   DATA.forEach(function (d) {
     byMonth[monthIdx(d)]++;
     byClosure[d.c] = (byClosure[d.c]||0) + 1;
     byCat[d.cat] = (byCat[d.cat]||0) + 1;
+    var w = d.why || "unknown"; byWhy[w] = (byWhy[w]||0) + 1;
   });
   var peakMonth = activeMonths[0];
   activeMonths.forEach(function (m){ if (byMonth[m] > byMonth[peakMonth]) peakMonth = m; });
@@ -750,13 +835,45 @@
       '<span class="n">' + v + '</span></button>';
   }).join("");
 
+  // ---------- Why bars (clickable) ----------
+  var whyList = WHY_ORDER.filter(function (k){ return byWhy[k]; });
+  var whyMax = Math.max.apply(null, whyList.map(function (k){ return byWhy[k]; }));
+  el("why-bars").innerHTML = whyList.map(function (k, i) {
+    var pct = Math.round((byWhy[k] / whyMax) * 100);
+    return '<button class="hbar" data-why="' + esc(k) + '" style="all:unset;display:grid;grid-template-columns:116px 1fr 34px;align-items:center;gap:12px;cursor:pointer">' +
+      '<span class="k">' + esc(WHY_SHORT[k]) + '</span>' +
+      '<span class="track"><span class="fill" style="width:' + pct + '%;background:' + WHY_HEX[k] + ';animation-delay:' + (i*60) + 'ms"></span></span>' +
+      '<span class="n">' + byWhy[k] + '</span></button>';
+  }).join("");
+
+  // ---------- Category x reason cross-reference ----------
+  el("cross").innerHTML = catList.map(function (c) {
+    var items = DATA.filter(function (d){ return d.cat === c; });
+    var t = {}; items.forEach(function (d){ var k = d.why || "unknown"; t[k] = (t[k]||0) + 1; });
+    var segs = WHY_ORDER.filter(function (k){ return t[k]; }).map(function (k) {
+      return '<span class="xseg" title="' + esc(WHY_LABEL[k]) + ': ' + t[k] + '" style="width:' +
+        ((t[k]/items.length)*100) + '%;background:' + WHY_HEX[k] + '"></span>';
+    }).join("");
+    return '<div class="xrow"><span class="k">' + esc(c) + '</span>' +
+      '<span class="xbar">' + segs + '</span><span class="n">' + items.length + '</span></div>';
+  }).join("") +
+  '<div class="xlegend">' + whyList.map(function (k) {
+    return '<span style="color:' + WHY_HEX[k] + '"><i></i><em style="color:var(--dim);font-style:normal">' +
+      esc(WHY_SHORT[k]) + '</em></span>';
+  }).join("") + '</div>';
+
   // ---------- Filters / controls ----------
-  var state = { q:"", cat:"", closure:"", month:"", sort:"date-desc" };
+  var state = { q:"", cat:"", closure:"", why:"", month:"", sort:"date-desc" };
 
   // category select
   var selCat = el("sel-cat");
   selCat.innerHTML = '<option value="">All categories</option>' +
     catList.slice().sort().map(function (c){ return '<option value="' + esc(c) + '">' + esc(c) + '</option>'; }).join("");
+
+  // reason select
+  var selWhy = el("sel-why");
+  selWhy.innerHTML = '<option value="">All reasons</option>' +
+    whyList.map(function (k){ return '<option value="' + k + '">' + esc(WHY_LABEL[k]) + '</option>'; }).join("");
 
   // month chips
   var chipWrap = el("month-chips");
@@ -784,12 +901,26 @@
             ? '<span class="badge-dead">Account deleted</span>'
             : '<span class="badge-dead badge-soft">Link not archived</span>');
     var idx = ("00" + (i + 1)).slice(-3);
-    return '<div class="row" role="row" style="animation-delay:' + Math.min(i*22,500) + 'ms">' +
+    var why = d.why || "unknown";
+    var hasDetail = !!d.note;
+    var detail = hasDetail
+      ? '<div class="detail"><p class="why-full">' + esc(WHY_LABEL[why] || "") + '</p><p>' + esc(d.note) + '</p>' +
+        (d.figs && d.figs.length
+          ? '<div class="figs">' + d.figs.map(function (f) {
+              return '<span class="fig">' + esc(f.k) + '<b>' + esc(f.v) + '</b></span>';
+            }).join("") + '</div>'
+          : "") + '</div>'
+      : "";
+    return '<div class="row' + (hasDetail ? ' has-detail' : '') + '" role="row"' +
+      (hasDetail ? ' tabindex="0" aria-expanded="false"' : '') +
+      ' style="animation-delay:' + Math.min(i*22,500) + 'ms">' +
       '<div class="c-idx">' + idx + '</div>' +
       '<div class="c-name">' + esc(d.n) + '</div>' +
       '<div class="c-cat"><span class="cat-tag">' + esc(d.cat) + '</span></div>' +
+      '<div class="c-why"><span class="why-chip why-' + esc(why) + '">' + esc(WHY_SHORT[why] || WHY_SHORT.unknown) + '</span></div>' +
       '<div class="c-date">' + fmtDate(d) + '</div>' +
       '<div class="c-link">' + link + '</div>' +
+      detail +
       '</div>';
   }
 
@@ -799,6 +930,7 @@
       if (q && d.n.toLowerCase().indexOf(q) === -1) return false;
       if (state.cat && d.cat !== state.cat) return false;
       if (state.closure && d.c !== state.closure) return false;
+      if (state.why && (d.why || "unknown") !== state.why) return false;
       if (state.month !== "" && monthIdx(d) !== +state.month) return false;
       return true;
     });
@@ -823,6 +955,7 @@
     if (state.q) parts.push('“' + esc(state.q) + '”');
     if (state.cat) parts.push(esc(state.cat));
     if (state.closure) parts.push(esc(CLOSURE_LABEL[state.closure]));
+    if (state.why) parts.push(esc(WHY_LABEL[state.why]));
     if (state.month !== "") parts.push(MONTHS[+state.month]);
     el("resultline").innerHTML = "Showing <b>" + list.length + "</b> of " + DATA.length +
       (parts.length ? " · filtered by " + parts.join(" · ") : " projects");
@@ -832,6 +965,38 @@
   el("search").addEventListener("input", function (e){ state.q = e.target.value; apply(); });
   selCat.addEventListener("change", function (e){ state.cat = e.target.value; apply(); });
   el("sel-closure").addEventListener("change", function (e){ state.closure = e.target.value; apply(); });
+  selWhy.addEventListener("change", function (e){ state.why = e.target.value; apply(); });
+
+  // expandable rows
+  function toggleRow(row) {
+    if (!row || !row.classList.contains("has-detail")) return;
+    var isOpen = row.classList.contains("open");
+    Array.prototype.forEach.call(document.querySelectorAll("#rows .row.open"), function (r) {
+      r.classList.remove("open"); r.setAttribute("aria-expanded","false");
+    });
+    if (!isOpen) { row.classList.add("open"); row.setAttribute("aria-expanded","true"); }
+  }
+  el("rows").addEventListener("click", function (e) {
+    if (e.target.closest("a")) return;
+    toggleRow(e.target.closest(".row"));
+  });
+  el("rows").addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var row = e.target.closest(".row.has-detail");
+    if (!row) return;
+    e.preventDefault();
+    toggleRow(row);
+  });
+
+  // clicking a reason bar filters the registry
+  el("why-bars").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-why]"); if (!b) return;
+    var k = b.dataset.why;
+    state.why = (state.why === k) ? "" : k;
+    selWhy.value = state.why;
+    apply();
+    document.getElementById("rg").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
   el("sel-sort").addEventListener("change", function (e){ state.sort = e.target.value; apply(); });
 
   chipWrap.addEventListener("click", function (e) {

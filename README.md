@@ -34,9 +34,18 @@ the `<script>` tag — look for `var DATA = [`. Each project is one object:
   iso:"2026-07-25",   // shutdown date, YYYY-MM-DD
   day:true,           // false if only the month is known (shows "≈ Jul 2026")
   url:"https://x.com/.../status/...",  // announcement link, or null
-  c:"x",              // how it was announced: "x" | "discord" | "docs" | "deleted"
-  cat:"DeFi" }        // Wallet | DeFi | L2/Infra | Gaming | NFT/Social | Trading/CEX | AI | Other
+  c:"x",              // how it was announced: x | docs | news | discord | deleted
+  cat:"DeFi",         // Wallet | DeFi | L2/Infra | Gaming | NFT/Social | Trading/CEX | AI | Other
+  why:"funding",      // funding | exploit | traction | market | regulatory
+                      // insolvency | acquired | dependency | voluntary | unknown
+  note:"Ran out of runway after failing to close a follow-on round.",
+  figs:[{k:"Raised",v:"$5M"}] }        // 0-3 key figures, optional
 ```
+
+`why` must reflect **what the source actually says** — if a project calls it a "strategic
+decision", tag it `voluntary` and let `note` carry the nuance. If no reason was stated
+anywhere, use `unknown` and omit `note`. Only include figures a source states explicitly;
+never estimate.
 
 Set `url` to `null` when a project only deleted its account or posted on Discord — the
 page shows a badge instead of a broken link. Every stat, chart, filter and counter is
