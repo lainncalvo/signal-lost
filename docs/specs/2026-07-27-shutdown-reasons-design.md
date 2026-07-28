@@ -33,6 +33,33 @@ than archival. It is also the dimension no other 2026 shutdown list covers.
 - Contagion/dependency graph visualization. The `dependency` reason tag captures the
   data; the visualization is deferred.
 
+## Deferred: capital raised
+
+Worth building later, with two caveats worked out first.
+
+**Feasibility, measured 2026-07-27.** 14 of 107 entries already carry a raised amount,
+picked up incidentally during the reason research — those alone total ~$339M, so the full
+set plausibly lands between $1B and $2B in disclosed funding. RootData was tested as a
+cheap source and is not sufficient: its `Total Raised` field is frequently `--`. It does
+reliably expose **founding year** and **investor names**. So amounts need web research
+(roughly one parallel-agent round, comparable in cost to the reason research), while
+founding year — which would enable a "died at age X" stat — is close to free to scrape.
+
+**Framing caveat, and the reason this is deferred.** "Money VCs lost" is not the same as
+"total raised", and publishing it as such would be wrong:
+
+- Some capital was explicitly returned. Entropy returned its $27M; OpenRank returned its
+  remaining capital; Ranger liquidated and returned its treasury. Counting those as lost
+  is false, and they are among the best-documented entries in the registry.
+- Not all raised capital is VC capital — token sales, public rounds, grants and
+  self-funding are mixed in (Powerloom's founders funded operations personally).
+- Capital raised and then spent over several years on salaries and product is not
+  "lost" in the same sense as capital destroyed in an exploit.
+
+If built, label it **"disclosed capital raised by projects that shut down"** and track
+returned-to-investors cases as a separate state. That distinction is more interesting than
+a single total anyway: it separates an orderly wind-down from a wipeout.
+
 ## Data model
 
 Three new optional fields per entry in the `DATA` array in `index.html`:
